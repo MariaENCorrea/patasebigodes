@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Consultas | Patas & Bigodes</title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <!-- Favicon -->
+    <link
+        rel="icon"
+        type="image/png"
+        href="../static/img/favicon.png">
+
+    <!-- CSS da página -->
+    <link
+        rel="stylesheet"
+        href="../static/css/consultas.css">
+
+</head>
+
+
+<body>
+
+    <div class="pagina">
+
+        <!-- =================================================
+             HEADER
+        ================================================== -->
+
+        <header class="header">
+
+            <nav class="navbar navbar-expand-lg navbar-dark">
+
+                <div class="container-fluid px-3 px-lg-4">
+
+                    <!-- LOGO -->
+
+                    <a
+                        href="apresentacao.html"
+                        class="navbar-brand">
+
+                        <img
+                            src="../static/img/logo.png"
+                            class="logo"
+                            alt="Logo Patas & Bigodes">
+
+                    </a>
+
+
+                    <!-- MENU MOBILE -->
+
+                    <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#menuPrincipal"
+                        aria-controls="menuPrincipal"
+                        aria-expanded="false"
+                        aria-label="Abrir menu">
+
+                        <span class="navbar-toggler-icon"></span>
+
+                    </button>
+
+
+                    <!-- MENU -->
+
+                    <div
+                        class="collapse navbar-collapse"
+                        id="menuPrincipal">
+
+                        <div class="menu mx-auto">
+
+                            <a
+                                href="apresentacao.html"
+                                class="menu-link">
+
+                                <i class="bi bi-house-heart"></i>
+
+                                Início
+
+                            </a>
+
+
+                            <a
+                                href="consultas.html"
+                                class="menu-link ativo">
+
+                                <i class="bi bi-heart-pulse"></i>
+
+                                Consultas
+
+                            </a>
+
+
+                            <a
+                                href="horarios.html"
+                                class="menu-link">
+
+                                <i class="bi bi-calendar-heart"></i>
+
+                                Horários
+
+                            </a>
+
+                        </div>
+
+
+                        <!-- PERFIL -->
+
+                        <a
+                            href="/templates/carteirinha.html"
+                            class="perfil-link">
+
+                            <img
+                                src="../static/img/cachorro.png"
+                                class="perfil"
+                                alt="Área do cliente">
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </nav>
+
+        </header>
+
+
+        <!-- =================================================
+             CONTEÚDO
+        ================================================== -->
+
+        <main>
+
+            <div class="conteudo">
+
+
+                <!-- TÍTULO -->
+
+                <div class="titulo-principal">
+
+                    <span class="subtitulo">
+                        <i class="bi bi-heart-pulse-fill"></i>
+                        Cuidado para o seu melhor amigo
+                    </span>
+
+                    <h1>
+                        Agende sua consulta
+                    </h1>
+
+                    <p>
+                        Preencha os dados abaixo para cuidar
+                        da saúde e do bem-estar do seu pet.
+                    </p>
+
+                    <div class="linha-titulo"></div>
+
+                </div>
+
+
+                <!-- =================================================
+                     FORMULÁRIOS
+                ================================================== -->
+
+                <div class="row g-4">
+
+
+                    <!-- ==============================
+                         PET
+                    =============================== -->
+
+                    <div class="col-lg-4">
+
+                        <div class="coluna">
+
+                            <h2 class="titulo-coluna">
+
+                                <span class="icone-titulo">
+                                    <i class="bi bi-heart-fill"></i>
+                                </span>
+
+                                Seu Pet
+
+                            </h2>
+
+
+                            <!-- TIPO DE ANIMAL -->
+
+                            <label class="form-label">
+                                Qual é o seu pet?
+                            </label>
+
+                            <div class="opcoes-pet">
+
+                                <div class="form-check">
+
+                                    <input
+                                        class="form-check-input"
+                                        type="radio"
+                                        name="animal"
+                                        id="cachorro"
+                                        value="cachorro">
+
+                                    <label
+                                        class="form-check-label"
+                                        for="cachorro">
+
+                                        🐶 Cachorro
+
+                                    </label>
+
+                                </div>
+
+
+                                <div class="form-check">
+
+                                    <input
+                                        class="form-check-input"
+                                        type="radio"
+                                        name="animal"
+                                        id="gato"
+                                        value="gato">
+
+                                    <label
+                                        class="form-check-label"
+                                        for="gato">
+
+                                        🐱 Gato
+
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- NOME -->
+
+                            <label
+                                for="nomePet"
+                                class="form-label">
+
+                                Nome do pet
+
+                            </label>
+
+                            <input
+                                type="text"
+                                id="nomePet"
+                                class="form-control"
+                                placeholder="Digite o nome do pet">
+
+
+                            <!-- RAÇA -->
+
+                            <label
+                                for="raca"
+                                class="form-label">
+
+                                Espécie / Raça
+
+                            </label>
+
+                            <input
+                                type="text"
+                                id="raca"
+                                class="form-control"
+                                placeholder="Ex.: Golden Retriever">
+
+
+                            <!-- IDADE -->
+
+                            <label
+                                for="idade"
+                                class="form-label">
+
+                                Idade
+
+                            </label>
+
+                            <input
+                                type="number"
+                                id="idade"
+                                class="form-control"
+                                placeholder="Idade do pet">
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ==============================
+                         TUTOR
+                    =============================== -->
+
+                    <div class="col-lg-4">
+
+                        <div class="coluna">
+
+                            <h2 class="titulo-coluna">
+
+                                <span class="icone-titulo">
+                                    <i class="bi bi-person-heart"></i>
+                                </span>
+
+                                Dados do Tutor
+
+                            </h2>
+
+
+                            <!-- NOME -->
+
+                            <label
+                                for="nomeTutor"
+                                class="form-label">
+
+                                Nome completo
+
+                            </label>
+
+                            <input
+                                type="text"
+                                id="nomeTutor"
+                                class="form-control"
+                                placeholder="Digite seu nome completo">
+
+
+                            <!-- CELULAR -->
+
+                            <label
+                                for="celular"
+                                class="form-label">
+
+                                Celular / WhatsApp
+
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="celular"
+                                class="form-control"
+                                placeholder="(00) 00000-0000">
+
+
+                            <!-- EMAIL -->
+
+                            <label
+                                for="email"
+                                class="form-label">
+
+                                E-mail
+
+                            </label>
+
+                            <input
+                                type="email"
+                                id="email"
+                                class="form-control"
+                                placeholder="seuemail@email.com">
+
+
+                            <!-- INFORMAÇÕES -->
+
+                            <label
+                                for="informacoes"
+                                class="form-label">
+
+                                Informações adicionais
+
+                            </label>
+
+                            <textarea
+                                id="informacoes"
+                                class="form-control"
+                                placeholder="Conte um pouco mais sobre o seu pet..."></textarea>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ==============================
+                         SERVIÇO
+                    =============================== -->
+
+                    <div class="col-lg-4">
+
+                        <div class="coluna">
+
+                            <h2 class="titulo-coluna">
+
+                                <span class="icone-titulo">
+                                    <i class="bi bi-calendar-heart-fill"></i>
+                                </span>
+
+                                Serviço
+
+                            </h2>
+
+
+                            <!-- TIPO DE CONSULTA -->
+
+                            <label
+                                for="consulta"
+                                class="form-label">
+
+                                Tipo de consulta
+
+                            </label>
+
+                            <select
+                                id="consulta"
+                                class="form-select">
+
+                                <option selected>
+                                    Clínica Geral
+                                </option>
+
+                                <option>
+                                    Consulta de rotina
+                                </option>
+
+                                <option>
+                                    Vacinação
+                                </option>
+
+                                <option>
+                                    Retorno
+                                </option>
+
+                            </select>
+
+
+                            <!-- ESPECIALIDADE -->
+
+                            <label
+                                for="especialidade"
+                                class="form-label">
+
+                                Especialidade
+
+                            </label>
+
+                            <select
+                                id="especialidade"
+                                class="form-select">
+
+                                <option selected>
+                                    Selecione uma especialidade
+                                </option>
+
+                                <option>
+                                    Dermatologia
+                                </option>
+
+                                <option>
+                                    Cardiologia
+                                </option>
+
+                                <option>
+                                    Cirurgia
+                                </option>
+
+                            </select>
+
+
+                            <!-- DATA -->
+
+                            <label
+                                for="data"
+                                class="form-label">
+
+                                Data da consulta
+
+                            </label>
+
+                            <input
+                                type="date"
+                                id="data"
+                                class="form-control">
+
+
+                            <!-- HORÁRIO -->
+
+                            <label
+                                for="horario"
+                                class="form-label">
+
+                                Horário
+
+                            </label>
+
+                            <select
+                                id="horario"
+                                class="form-select">
+
+                                <option selected>
+                                    Selecione um horário
+                                </option>
+
+                                <option>
+                                    08:00
+                                </option>
+
+                                <option>
+                                    09:00
+                                </option>
+
+                                <option>
+                                    10:00
+                                </option>
+
+                                <option>
+                                    14:00
+                                </option>
+
+                                <option>
+                                    15:00
+                                </option>
+
+                                <option>
+                                    16:00
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     BOTÃO
+                ================================================== -->
+
+                <div class="area-confirmar">
+
+                    <button
+                        type="button"
+                        class="btn-confirmar"
+                        data-bs-toggle="modal"
+                        data-bs-target="#staticBackdrop">
+
+                        <i class="bi bi-calendar-check"></i>
+
+                        Confirmar consulta
+
+                    </button>
+
+                </div>
+
+
+                <!-- =================================================
+                     MODAL
+                ================================================== -->
+
+                <div
+                    class="modal fade"
+                    id="staticBackdrop"
+                    data-bs-backdrop="static"
+                    data-bs-keyboard="false"
+                    tabindex="-1"
+                    aria-labelledby="staticBackdropLabel"
+                    aria-hidden="true">
+
+                    <div class="modal-dialog modal-dialog-centered">
+
+                        <div class="modal-content">
+
+
+                            <div class="modal-header">
+
+                                <h1
+                                    class="modal-title"
+                                    id="staticBackdropLabel">
+
+                                    Consulta confirmada!
+
+                                    <i class="bi bi-check-circle-fill"></i>
+
+                                </h1>
+
+                                <button
+                                    type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Fechar">
+                                </button>
+
+                            </div>
+
+
+                            <div class="modal-body">
+
+                                <p>
+
+                                    <strong>Pronto!</strong>
+
+                                    A consulta do seu pet foi confirmada.
+
+                                </p>
+
+                                <p class="mb-0">
+
+                                    Para consultar mais informações,
+                                    acesse a
+                                    <strong>Carteira-Pet</strong>
+                                    pelo botão abaixo.
+
+                                </p>
+
+                            </div>
+
+
+                            <div class="modal-footer">
+
+                                <button
+                                    type="button"
+                                    class="btn btn-ver-fechar"
+                                    data-bs-dismiss="modal">
+
+                                    Fechar
+
+                                </button>
+
+
+                                <a
+                                    href="carteirinha.html"
+                                    class="btn btn-ver-fechar">
+
+                                    Ver Carteira-Pet
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </main>
+
+
+        <!-- =========================================
+             FOOTER
+        ========================================== -->
+
+        <footer>
+
+            <div class="footer-content">
+
+
+                <!-- LOGO -->
+
+                <div class="footer-logo">
+
+                    <img src="../static/img/logo.png"
+                        alt="Patas & Bigodes">
+
+                    <div>
+
+                        <strong>
+                            Patas & Bigodes
+                        </strong>
+
+                        <span>
+                            Cuidado que vira carinho.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- REDES SOCIAIS -->
+
+                <div class="footer-social">
+
+                    <a href="https://www.instagram.com/"
+                        target="_blank"
+                        aria-label="Instagram">
+
+                        <i class="bi bi-instagram"></i>
+
+                    </a>
+
+
+                    <a href="https://www.facebook.com/"
+                        target="_blank"
+                        aria-label="Facebook">
+
+                        <i class="bi bi-facebook"></i>
+
+                    </a>
+
+                </div>
+
+
+                <!-- COPYRIGHT -->
+
+                <p>
+                    © 2026 Patas & Bigodes.
+                    Todos os direitos reservados.
+                </p>
+
+            </div>
+
+        </footer>
+
+    </div>
+
+
+    <!-- Bootstrap JavaScript -->
+
+    <script
+        src="../static/js/consultas.js">
+    </script>
+
+</body>
+
+</html>

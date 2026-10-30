@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cadastro | Patas & Bigodes</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../static/css/cadastro.css">
+
+</head>
+
+<body>
+
+    <!-- =====================================================
+         CABEÇALHO
+    ===================================================== -->
+
+    <header>
+        <nav class="navbar">
+            <div class="container-fluid px-4">
+
+                <a  href="/templates/index.html" class="navbar-brand" aria-label="Página inicial">
+
+                    <img src="../static/img/logo.png" alt="Logo Patas & Bigodes" class="logo">
+                </a>
+
+                <a href="/templates/index.html" class="btn-voltar" title="Voltar para a página inicial"
+                    aria-label="Voltar para a página inicial">
+
+                    <i class="bi bi-arrow-left"></i>
+                </a>
+
+            </div>
+        </nav>
+    </header>
+
+    <!-- =====================================================
+         CONTEÚDO PRINCIPAL
+    ===================================================== -->
+
+    <main>
+        <div class="conteudo-principal">
+
+            <h1 class="titulo">Cadastre-se</h1>
+
+            <div class="linha-titulo"></div>
+
+            <p class="subtitulo">
+                Crie seu cadastro e mantenha as informações do seu pet organizadas.
+            </p>
+
+            
+
+            <!-- =================================================
+                 FORMULÁRIO ÚNICO
+            ================================================= -->
+
+            <form class="formulario-cadastro" id="formularioCadastro" th:action="@{/cadastro}" method="post">
+
+                <div class="formularios">
+
+                    <!-- =========================================
+                         DADOS DO ANIMAL
+                    ========================================== -->
+
+                    <section class="formulario" aria-labelledby="tituloAnimal">
+
+                        <div class="cabecalho-formulario">
+
+                            <div class="icone-formulario">
+                                <i class="bi bi-heart-pulse-fill"></i>
+                            </div>
+
+                            <div>
+                                <h2 class="titulo-formulario" id="tituloAnimal">
+                                    Dados do Animal
+                                </h2>
+
+                                <p class="descricao-formulario">
+                                    Informe os dados do seu pet
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <!-- Nome do animal -->
+                        <label for="nomeAnimal" class="form-label">
+                            Nome do Animal
+                        </label>
+
+                        <input type="text" class="form-control" id="nomeAnimal" name="nomeAnimal"
+                            placeholder="Digite o nome do animal" maxlength="100" required>
+
+                        <!-- Sexo -->
+                        <label class="form-label">
+                            Sexo
+                        </label>
+
+                        <div class="opcoes">
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="sexo" id="macho" value="Macho"
+                                    required>
+
+                                <label class="form-check-label" for="macho">
+                                    Macho
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="sexo" id="femea" value="Fêmea">
+
+                                <label class="form-check-label" for="femea">
+                                    Fêmea
+                                </label>
+                            </div>
+
+                        </div>
+
+                        <!-- Idade -->
+                        <label for="idade" class="form-label">
+                            Idade
+                        </label>
+
+                        <input type="number" class="form-control" id="idade" name="idade"
+                            placeholder="Digite a idade em anos" min="0" max="100" step="1">
+
+                        <!-- Espécie -->
+                        <label for="especie" class="form-label">
+                            Espécie
+                        </label>
+
+                        <select class="form-select" id="especie" name="especie" required>
+
+                            <option value="" selected disabled>
+                                Selecione a espécie
+                            </option>
+
+                            <option value="Cachorro">Cachorro</option>
+                            <option value="Gato">Gato</option>
+                            <option value="Ave">Ave</option>
+                            <option value="Outro">Outro</option>
+
+                        </select>
+
+                        <!-- Raça -->
+                        <label for="raca" class="form-label">
+                            Raça
+                        </label>
+
+                        <input type="text" class="form-control" id="raca" name="raca" placeholder="Digite a raça"
+                            maxlength="100">
+
+                    </section>
+
+                    <!-- =========================================
+                         DADOS DO PROPRIETÁRIO
+                    ========================================== -->
+
+                    <section class="formulario" aria-labelledby="tituloProprietario">
+
+                        <div class="cabecalho-formulario">
+
+                            <div class="icone-formulario">
+                                <i class="bi bi-person-fill"></i>
+                            </div>
+
+                            <div>
+                                <h2 class="titulo-formulario" id="tituloProprietario">
+                                    Dados do Proprietário
+                                </h2>
+
+                                <p class="descricao-formulario">
+                                    Informe seus dados pessoais
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <!-- Nome completo -->
+                        <label for="proprietario" class="form-label">
+                            Nome Completo
+                        </label>
+
+                        <input type="text" class="form-control" id="proprietario" name="nomeProprietario"
+                            placeholder="Digite seu nome completo" maxlength="150" autocomplete="name" required>
+
+                        <!-- CPF -->
+                        <label for="cpf" class="form-label">
+                            CPF
+                        </label>
+
+                        <input type="text" class="form-control" id="cpf" name="cpf" placeholder="000.000.000-00"
+                            maxlength="14" inputmode="numeric" autocomplete="off">
+
+                        <!-- RG -->
+                        <label for="rg" class="form-label">
+                            RG do Proprietário
+                        </label>
+
+                        <input type="text" class="form-control" id="rg" name="rg" placeholder="Digite seu RG"
+                            maxlength="20" required>
+
+                        <!-- Telefone -->
+                        <label for="numero" class="form-label">
+                            Número de Celular
+                        </label>
+
+                        <input type="tel" class="form-control" id="numero" name="telefone" placeholder="(00) 00000-0000"
+                            maxlength="15" inputmode="tel" autocomplete="tel" required>
+
+                        <!-- E-mail -->
+                        <label for="email" class="form-label">
+                            E-mail
+                        </label>
+
+                        <input type="email" class="form-control" id="email" name="email" placeholder="exemplo@email.com"
+                            maxlength="150" autocomplete="email" required>
+
+                        <!-- Cidade -->
+                        <label for="cidade" class="form-label">
+                            Cidade
+                        </label>
+
+                        <input type="text" class="form-control" id="cidade" name="cidade"
+                            placeholder="Digite sua cidade" maxlength="100" autocomplete="address-level2" required>
+
+                        <!-- Bairro -->
+                        <label for="bairro" class="form-label">
+                            Bairro
+                        </label>
+
+                        <input type="text" class="form-control" id="bairro" name="bairro"
+                            placeholder="Digite seu bairro" maxlength="100" required>
+
+                    </section>
+
+                </div>
+
+                <!-- =============================================
+                     BOTÃO DE ENVIO
+                ============================================== -->
+
+                <div class="area-botao">
+
+                    <button type="submit" class="btn-cadastrar">
+                        <i class="bi bi-check2-circle"></i>
+                        Finalizar Cadastro
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+    </main>
+
+    <!-- =====================================================
+         RODAPÉ
+    ===================================================== -->
+
+    <footer>
+
+        <div class="footer-content">
+
+            <div class="footer-logo">
+
+                <img src="../static/img/logo.png" alt="Patas & Bigodes">
+
+                <div>
+
+                    <strong>Patas & Bigodes</strong>
+
+                    <span>
+                        Cuidado que vira carinho.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-social">
+
+                <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram">
+
+                    <i class="bi bi-instagram"></i>
+
+                </a>
+
+                <a href="https://www.facebook.com/" target="_blank" aria-label="Facebook">
+
+                    <i class="bi bi-facebook"></i>
+
+                </a>
+
+            </div>
+
+
+            <p>
+                © 2026 Patas & Bigodes. Todos os direitos reservados.
+            </p>
+
+        </div>
+
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript do cadastro -->
+    <script th:src="@{/js/cadastro.js}"></script>
+
+</body>
+
+</html>

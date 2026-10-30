@@ -1,0 +1,817 @@
+
+/* ==========================================
+   PATAS & BIGODES
+   Estilo moderno e responsivo
+========================================== */
+
+/* PALETA DE CORES */
+:root {
+    --verde-escuro: #034C3C;
+    --verde: #4D8B7D;
+    --verde-medio: #76A99A;
+    --verde-claro: #D7E9DE;
+    --verde-fundo: #F1F7F3;
+
+    --dourado: #DE9E36;
+    --dourado-claro: #F5E4C3;
+
+    --branco: #FFFFFF;
+    --texto: #26332F;
+    --texto-suave: #687871;
+
+    --sombra: 0 15px 45px rgba(3, 76, 60, 0.10);
+    --sombra-forte: 0 20px 55px rgba(3, 76, 60, 0.16);
+
+    --raio: 24px;
+}
+
+/* ==========================================
+   CONFIGURAÇÕES GERAIS
+========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 30px;
+}
+
+body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background-color: var(--verde-fundo);
+    color: var(--texto);
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* ==========================================
+   CABEÇALHO
+========================================== */
+
+header {
+    width: 100%;
+    height: 85px;
+    background-color: var(--verde-escuro);
+
+    display: flex;
+    align-items: center;
+
+    position: relative;
+    z-index: 10;
+
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+}
+
+.navbar {
+    width: 100%;
+    height: 100%;
+    padding: 0 7%;
+}
+
+.navbar .container-fluid {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 65px;
+    height: 65px;
+
+    object-fit: contain;
+
+    background-color: var(--branco);
+    border-radius: 50%;
+
+    padding: 5px;
+
+    transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+    transform: scale(1.08) rotate(-5deg);
+}
+
+/* ==========================================
+   SEÇÃO INICIAL
+========================================== */
+
+.inicio {
+    min-height: 650px;
+
+    padding: 65px 5%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 10% 15%,
+            rgba(118, 169, 154, 0.18),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #F1F7F3 0%,
+            #E2EFE7 55%,
+            #D7E9DE 100%
+        );
+}
+
+/* Detalhes decorativos */
+
+.inicio::before {
+    content: "";
+    position: absolute;
+
+    width: 350px;
+    height: 350px;
+
+    border: 2px solid rgba(3, 76, 60, 0.08);
+    border-radius: 50%;
+
+    top: -180px;
+    right: -100px;
+}
+
+.inicio::after {
+    content: "";
+    position: absolute;
+
+    width: 250px;
+    height: 250px;
+
+    background-color: rgba(222, 158, 54, 0.08);
+    border-radius: 50%;
+
+    bottom: -130px;
+    left: -80px;
+}
+
+/* Cartão principal */
+
+.card-clinica {
+    width: 100%;
+    max-width: 1200px;
+
+    padding: 55px 45px;
+
+    background-color: rgba(255, 255, 255, 0.82);
+
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 30px;
+
+    box-shadow: var(--sombra-forte);
+
+    position: relative;
+    z-index: 1;
+
+    backdrop-filter: blur(12px);
+}
+
+/* ==========================================
+   CONTEÚDO DA APRESENTAÇÃO
+========================================== */
+
+.conteudo {
+    padding: 20px 25px;
+}
+
+.tagline {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 10px 17px;
+
+    background-color: var(--verde-claro);
+    color: var(--verde-escuro);
+
+    border-radius: 30px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    margin-bottom: 25px;
+}
+
+.tagline::before {
+    content: "♥";
+    color: var(--dourado);
+    font-size: 17px;
+}
+
+.titulo {
+    color: var(--verde-escuro);
+
+    font-size: clamp(40px, 5vw, 65px);
+    font-weight: 800;
+
+    line-height: 1.08;
+    letter-spacing: -2px;
+
+    margin-bottom: 25px;
+}
+
+.titulo span {
+    color: var(--dourado);
+}
+
+.descricao {
+    max-width: 470px;
+
+    color: var(--texto-suave);
+
+    font-size: 17px;
+    line-height: 1.9;
+
+    margin-bottom: 35px;
+}
+
+/* ==========================================
+   BOTÕES
+========================================== */
+
+.botoes {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.btn-clinica {
+    min-width: 155px;
+
+    padding: 15px 25px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    background-color: var(--verde-escuro);
+    color: var(--branco);
+
+    border: 2px solid var(--verde-escuro);
+    border-radius: 12px;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    box-shadow: 0 7px 18px rgba(3, 76, 60, 0.15);
+
+    transition: all 0.3s ease;
+}
+
+.btn-clinica i {
+    font-size: 19px;
+}
+
+.btn-clinica:hover {
+    background-color: var(--dourado);
+    border-color: var(--dourado);
+
+    color: var(--branco);
+
+    transform: translateY(-4px);
+
+    box-shadow: 0 10px 22px rgba(222, 158, 54, 0.25);
+}
+
+.btn-clinica:active {
+    transform: scale(0.97);
+}
+
+/* ==========================================
+   IMAGEM DOS ANIMAIS
+========================================== */
+
+.animais {
+    width: 100%;
+    max-width: 490px;
+
+    margin: 0 auto;
+
+    position: relative;
+}
+
+.animais::before {
+    content: "";
+
+    position: absolute;
+    inset: -14px;
+
+    border: 2px solid var(--dourado);
+    border-radius: 35px;
+
+    transform: rotate(4deg);
+
+    z-index: -1;
+}
+
+.animais img {
+    width: 100%;
+    height: 420px;
+
+    object-fit: cover;
+
+    border-radius: 28px;
+
+    box-shadow: var(--sombra-forte);
+
+    transition: transform 0.5s ease;
+}
+
+.animais:hover img {
+    transform: scale(1.025);
+}
+
+/* ==========================================
+   LOCALIZAÇÃO
+========================================== */
+
+.localizacao {
+    padding: 90px 5% 100px;
+
+    background-color: var(--branco);
+}
+
+.titulo-localizacao {
+    text-align: center;
+    margin-bottom: 55px;
+}
+
+.titulo-localizacao h2 {
+    color: var(--verde-escuro);
+
+    font-size: clamp(30px, 4vw, 42px);
+    font-weight: 800;
+
+    margin-bottom: 15px;
+}
+
+.titulo-localizacao h2 i {
+    color: var(--dourado);
+    margin-right: 8px;
+}
+
+.titulo-localizacao p {
+    color: var(--texto-suave);
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+/* ==========================================
+   MAPA
+========================================== */
+
+.mapa-container {
+    width: 100%;
+    height: 370px;
+
+    padding: 10px;
+
+    background-color: var(--verde-claro);
+    border-radius: var(--raio);
+
+    box-shadow: var(--sombra);
+
+    overflow: hidden;
+
+    transition: transform 0.3s ease;
+}
+
+.mapa-container:hover {
+    transform: translateY(-6px);
+}
+
+.mapa {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    border-radius: 18px;
+}
+
+/* ==========================================
+   ENDEREÇO
+========================================== */
+
+.endereco {
+    padding: 38px 32px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #F1F7F3,
+            #D7E9DE
+        );
+
+    border: 1px solid #D5E8DD;
+    border-radius: var(--raio);
+
+    box-shadow: var(--sombra);
+
+    transition: all 0.3s ease;
+}
+
+.endereco:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--sombra-forte);
+}
+
+.icone-localizacao {
+    width: 65px;
+    height: 65px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--verde-escuro);
+    color: var(--branco);
+
+    border-radius: 18px;
+
+    font-size: 28px;
+
+    margin-bottom: 25px;
+}
+
+.endereco h3 {
+    color: var(--verde-escuro);
+
+    font-size: 23px;
+    font-weight: 700;
+
+    margin-bottom: 20px;
+}
+
+.endereco p {
+    color: var(--texto-suave);
+
+    font-size: 17px;
+    line-height: 2;
+}
+
+.endereco strong {
+    color: var(--verde-escuro);
+}
+
+/* ==========================================
+   RODAPÉ
+========================================== */
+
+footer {
+
+    background-color: #034C3C;
+
+    color: white;
+
+    box-shadow:
+        0 -4px 12px rgba(0, 0, 0, 0.12);
+
+}
+
+.footer-content {
+
+    width: min(1180px, 94%);
+
+    min-height: 100px;
+
+    margin: 0 auto;
+
+    padding: 20px 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+}
+
+.footer-logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+.footer-logo img {
+
+    width: 52px;
+    height: 52px;
+
+    padding: 4px;
+
+    border-radius: 50%;
+
+    background-color: white;
+
+    object-fit: contain;
+
+
+}
+
+.footer-logo strong {
+
+    display: block;
+
+    font-size: 17px;
+
+}
+
+.footer-logo span {
+
+    display: block;
+
+    color: rgba(255, 255, 255, 0.7);
+
+    font-size: 15px;
+
+}
+
+.footer-social {
+
+    display: flex;
+
+    gap: 10px;
+
+}
+
+.footer-social a {
+
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background-color: rgba(255, 255, 255, 0.12);
+
+    color: white;
+
+    text-decoration: none;
+
+    transition: 0.3s;
+
+}
+
+.footer-social a:hover {
+
+    background-color: white;
+
+    color: #3E7CB1;
+
+    transform: translateY(-2px);
+
+}
+
+.footer-content>p {
+
+    margin: 0;
+
+    color: rgba(255, 255, 255, 0.75);
+
+    font-size: 12px;
+
+}
+
+.contatos {
+    color: var(--amarelo);
+    font-size: 16px;
+}
+/* ==========================================
+   ANIMAÇÕES COM JAVASCRIPT
+========================================== */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==========================================
+   ACESSIBILIDADE
+========================================== */
+
+a:focus-visible {
+    outline: 3px solid var(--dourado);
+    outline-offset: 5px;
+}
+
+/* ==========================================
+   RESPONSIVIDADE - TABLETS
+========================================== */
+
+@media (max-width: 991px) {
+
+    .inicio {
+        padding: 45px 4%;
+    }
+
+    .card-clinica {
+        padding: 40px 25px;
+    }
+
+    .conteudo {
+        padding: 15px 5px;
+    }
+
+    .titulo {
+        font-size: clamp(38px, 6vw, 55px);
+    }
+
+    .animais {
+        margin-top: 30px;
+    }
+
+    .animais img {
+        height: 350px;
+    }
+
+    .localizacao {
+        padding: 70px 5%;
+    }
+}
+
+/* ==========================================
+   RESPONSIVIDADE - CELULARES
+========================================== */
+
+@media (max-width: 576px) {
+
+    header {
+        height: 72px;
+    }
+
+    .navbar {
+        padding: 0 5%;
+    }
+
+    .logo img {
+        width: 55px;
+        height: 55px;
+    }
+
+    .inicio {
+        min-height: auto;
+        padding: 35px 15px 50px;
+    }
+
+    .card-clinica {
+        padding: 28px 18px;
+        border-radius: 22px;
+    }
+
+    .tagline {
+        font-size: 12px;
+        padding: 9px 12px;
+    }
+
+    .titulo {
+        font-size: 43px;
+        letter-spacing: -1.5px;
+    }
+
+    .descricao {
+        font-size: 15px;
+        line-height: 1.8;
+    }
+
+    .botoes {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn-clinica {
+        width: 100%;
+    }
+
+    .animais {
+        margin-top: 35px;
+    }
+
+    .animais img {
+        height: 270px;
+        border-radius: 20px;
+    }
+
+    .animais::before {
+        inset: -8px;
+        border-radius: 25px;
+    }
+
+    .localizacao {
+        padding: 60px 18px;
+    }
+
+    .titulo-localizacao {
+        margin-bottom: 35px;
+    }
+
+    .titulo-localizacao p {
+        font-size: 14px;
+    }
+
+    .mapa-container {
+        height: 270px;
+    }
+
+    .endereco {
+        padding: 28px 22px;
+    }
+
+    .endereco h3 {
+        font-size: 20px;
+    }
+
+    .endereco p {
+        font-size: 15px;
+    }
+
+    footer {
+        padding: 30px 20px 20px;
+    }
+
+    .footer-content {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .footer-logo {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .footer-social {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .footer-content > p {
+        font-size: 12px;
+        line-height: 1.7;
+    }
+}
+
+/* ==========================================
+   REDUÇÃO DE MOVIMENTO
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+    }
+}
