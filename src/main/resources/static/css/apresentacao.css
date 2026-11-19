@@ -89,7 +89,6 @@ body {
 /* LOGO */
 
 .logo {
-
     width: 58px;
     height: 58px;
 
@@ -97,20 +96,20 @@ body {
 
     border-radius: 50%;
 
-    background: white;
+    background-color: white;
 
     padding: 3px;
 
     box-shadow:
-        0 4px 12px rgba(0, 0, 0, .18);
+        0 4px 12px rgba(0, 0, 0, 0.18);
 
-    transition: .3s;
+    transition: 0.3s;
 }
 
 .logo:hover {
-
     transform: scale(1.05);
 }
+
 
 
 /* =====================================================
@@ -1133,7 +1132,7 @@ footer {
 
 /* COPYRIGHT */
 
-.footer-content > p {
+.footer-content>p {
     margin: 0;
 
     color:

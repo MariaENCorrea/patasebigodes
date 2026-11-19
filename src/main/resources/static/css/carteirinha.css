@@ -93,6 +93,62 @@ a {
     color: white;
 }
 
+/* =====================================================
+   MENU
+===================================================== */
+
+.menu {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+}
+
+
+.menu-link {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 10px 16px;
+
+    border-radius: 30px;
+
+    color: #E7F4EE;
+
+    text-decoration: none;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    transition: .3s;
+}
+
+
+.menu-link i {
+
+    font-size: 17px;
+}
+
+
+.menu-link:hover,
+.menu-link.ativo {
+
+    background: var(--amarelo);
+
+    color: var(--verde-escuro);
+
+    transform: translateY(-2px);
+}
+
 /* CONTEÚDO E TÍTULO */
 
 .titulo-pagina {
@@ -279,7 +335,7 @@ a {
     background: white;
 }
 
-.informacao-item > i {
+.informacao-item>i {
     display: flex;
     width: 42px;
     height: 42px;
@@ -477,7 +533,7 @@ a {
     width: min(100%, 390px);
 }
 
-.campo-busca > i {
+.campo-busca>i {
     position: absolute;
     top: 50%;
     left: 14px;
@@ -636,7 +692,7 @@ a {
     text-align: center;
 }
 
-.estado-vazio > i {
+.estado-vazio>i {
     color: #8BAFCB;
     font-size: 2.6rem;
 }
@@ -665,7 +721,7 @@ a {
     color: #456981;
 }
 
-.aviso-carteirinha > i {
+.aviso-carteirinha>i {
     margin-top: 2px;
     color: var(--azul-principal);
     font-size: 1.2rem;
@@ -765,75 +821,126 @@ a {
     background: #DCE3E8;
 }
 
-/* RODAPÉ */
+/* =========================================
+   FOOTER
+========================================= */
 
-.rodape {
-    margin-top: 55px;
-    background: var(--azul-principal);
+footer {
+    background-color: #3E7CB1;
+
     color: white;
-    box-shadow: 0 -4px 12px rgba(0, 0, 0, .1);
+
+    box-shadow:
+        0 -4px 12px rgba(0, 0, 0, 0.12);
 }
 
-.rodape-conteudo {
-    padding: 30px 0 20px;
-    text-align: center;
-}
+.footer-content {
+    width: min(1180px, 94%);
 
-.rodape-marca {
+    min-height: 100px;
+
+    margin: 0 auto;
+
+    padding: 20px 0;
+
     display: flex;
+
     align-items: center;
-    justify-content: center;
-    gap: 10px;
-    color: white;
-    font-size: 1.1rem;
-    font-weight: bold;
-    letter-spacing: .5px;
+
+    justify-content: space-between;
+
+    gap: 20px;
 }
 
-.rodape-marca i {
-    color: var(--dourado-claro);
-    font-size: 1.35rem;
-}
 
-.rodape-conteudo > p {
-    margin: 12px 0;
-    color: rgba(255, 255, 255, .82);
-}
+/* LOGO DO FOOTER */
 
-.rodape-redes {
+.footer-logo {
     display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin: 15px 0 20px;
-}
 
-.rodape-redes a {
-    display: flex;
-    width: 40px;
-    height: 40px;
     align-items: center;
-    justify-content: center;
+
+    gap: 12px;
+}
+
+.footer-logo img {
+    width: 52px;
+    height: 52px;
+
+    padding: 4px;
+
     border-radius: 50%;
-    background: rgba(255, 255, 255, .14);
-    color: white;
-    font-size: 1.1rem;
-    text-decoration: none;
+
+    background-color: white;
+
+    object-fit: contain;
 }
 
-.rodape-redes a:hover {
-    background: white;
-    color: var(--azul-principal);
+.footer-logo strong {
+    display: block;
+
+    font-size: 17px;
+}
+
+.footer-logo span {
+    display: block;
+
+    color:
+        rgba(255, 255, 255, 0.7);
+
+    font-size: 15px;
+}
+
+
+/* REDES SOCIAIS */
+
+.footer-social {
+    display: flex;
+
+    gap: 10px;
+}
+
+.footer-social a {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background-color:
+        rgba(255, 255, 255, 0.12);
+
+    color: white;
+
+    text-decoration: none;
+
+    transition: 0.3s;
+}
+
+.footer-social a:hover {
+    background-color: white;
+
+    color: #3E7CB1;
+
     transform: translateY(-2px);
 }
 
-.rodape-conteudo hr {
-    border-color: rgba(255, 255, 255, .35);
+
+/* COPYRIGHT */
+
+.footer-content>p {
+    margin: 0;
+
+    color:
+        rgba(255, 255, 255, 0.75);
+
+    font-size: 12px;
 }
 
-.rodape-conteudo .copyright {
-    margin: 15px 0 0;
-    font-size: .85rem;
-}
 
 /* RESPONSIVIDADE */
 
@@ -963,7 +1070,7 @@ a {
         padding: 10px;
     }
 
-    .informacao-item > i {
+    .informacao-item>i {
         width: 34px;
         height: 34px;
         font-size: 1rem;
