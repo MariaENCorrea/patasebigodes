@@ -4,6 +4,12 @@
     --verde-claro: #dceee7;
     --amarelo: #e4a52b;
     --branco: #ffffff;
+    --preto: #222222;
+    --borda: #d5e3dd;
+}
+
+* {
+    box-sizing: border-box;
 }
 
 body {
@@ -12,9 +18,7 @@ body {
     font-family: Georgia, 'Times New Roman', serif;
 }
 
-/* =====================================================
-           HEADER
-        ===================================================== */
+/* HEADER */
 
 header {
     background-color: var(--verde-escuro);
@@ -48,83 +52,50 @@ header {
     height: 62px;
     background-color: white;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
+    display: block;
+    object-fit: contain;
+    padding: 3px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
-.logo img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    border-radius: 50%;
-}
-
-.nome-logo {
-    font-size: 25px;
-    font-weight: bold;
-    letter-spacing: 0.5px;
-}
-
-.nome-logo span {
-    color: var(--amarelo);
-}
-
-
-/* =====================================================
-   BOTÃO VOLTAR
-===================================================== */
+/* BOTÃO VOLTAR */
 
 .btn-voltar {
     width: 43px;
     height: 43px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     flex-shrink: 0;
-
     background-color: var(--amarelo);
     color: var(--preto);
-
     border: none;
     border-radius: 50%;
-
     text-decoration: none;
-
     font-size: 19px;
-
     cursor: pointer;
-
     transition: all 0.3s ease;
 }
 
 .btn-voltar:hover {
     background-color: #c98e18;
     color: var(--branco);
-
     transform: translateX(-3px);
 }
 
-/* ================= LOGIN ================= */
+/* LOGIN */
 
 main {
-    min-height: calc(100vh - 90px);
+    min-height: calc(100vh - 180px);
     background-color: var(--verde-claro);
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     padding: 50px 20px;
 }
 
 .inicio {
     width: 100%;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -135,60 +106,59 @@ main {
 .card-clinica {
     width: 100%;
     max-width: 550px;
-
     background-color: var(--branco);
-
     border: 1px solid var(--borda);
     border-radius: 25px;
-
     padding: 45px;
-
     box-shadow: 0 15px 40px rgba(3, 76, 60, 0.15);
-
     position: relative;
     overflow: hidden;
 }
 
-/* DETALHE AMARELO NO TOPO */
-
 .card-clinica::before {
     content: "";
-
     position: absolute;
     top: 0;
     left: 0;
-
     width: 100%;
     height: 7px;
-
     background-color: var(--amarelo);
+}
+
+/* ÍCONE */
+
+.login-icon {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    background-color: var(--verde-claro);
+    color: var(--verde-escuro);
+    border-radius: 50%;
+    font-size: 32px;
 }
 
 /* TÍTULO */
 
 .titulosegundario {
     color: var(--verde-escuro);
-
     font-size: 30px;
     font-weight: bold;
-
     text-align: center;
-
     line-height: 1.3;
-
     margin-bottom: 10px;
 }
 
-/* TEXTO */
+/* DESCRIÇÃO */
 
 .login-descricao {
     color: #666;
-
     font-size: 15px;
-
     text-align: center;
-
     margin-bottom: 30px;
+    line-height: 1.6;
 }
 
 /* FORMULÁRIO */
@@ -201,12 +171,9 @@ main {
 
 .form-label {
     display: block;
-
     color: var(--verde-escuro);
-
     font-size: 15px;
     font-weight: bold;
-
     margin-top: 18px;
     margin-bottom: 8px;
 }
@@ -216,94 +183,199 @@ main {
 .form-control {
     width: 100%;
     height: 50px;
-
     border: 1px solid var(--borda);
     border-radius: 10px;
-
     padding: 0 15px;
-
     font-size: 15px;
-
     background-color: #f9fcfb;
-
     transition: 0.3s;
 }
 
 .form-control:focus {
     border-color: var(--verde);
-
     box-shadow: 0 0 0 3px rgba(76, 140, 126, 0.15);
-
     outline: none;
-
     background-color: white;
 }
 
-/* BOTÃO */
+/* VISUALIZAR SENHA */
+
+.campo-senha {
+    position: relative;
+}
+
+.campo-senha .form-control {
+    padding-right: 48px;
+}
+
+.campo-senha button {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    color: var(--verde-escuro);
+    cursor: pointer;
+    font-size: 19px;
+    padding: 5px;
+}
+
+.campo-senha button:hover {
+    color: var(--verde);
+}
+
+/* BOTÃO LOGIN */
 
 .btn-login {
     width: 100%;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
+    gap: 10px;
     background-color: var(--verde-escuro);
-
     color: white;
-
     border: none;
     border-radius: 10px;
-
     padding: 14px;
-
     margin-top: 28px;
-
+    font-family: inherit;
     font-size: 16px;
     font-weight: bold;
-
     text-decoration: none;
-
+    cursor: pointer;
     transition: 0.3s;
 }
 
 .btn-login:hover {
     background-color: var(--verde);
-
     color: white;
-
     transform: translateY(-2px);
-
     box-shadow: 0 8px 18px rgba(3, 76, 60, 0.20);
 }
 
-/* ÍCONE */
+.btn-login:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
 
-.login-icon {
-    width: 70px;
-    height: 70px;
+/* ERROS DE VALIDAÇÃO */
 
+.form-control.is-invalid {
+    border-color: #dc3545;
+    background-image: none;
+}
+
+.mensagem-erro {
+    display: block;
+    color: #dc3545;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+/* ALERTAS */
+
+.alert {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    border-radius: 10px;
+}
+
+/* FOOTER */
+
+footer {
+    background-color: #034C3C;
+    color: white;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.footer-content {
+    width: min(1180px, 94%);
+    min-height: 100px;
+    margin: 0 auto;
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.footer-logo img {
+    width: 52px;
+    height: 52px;
+    padding: 4px;
+    border-radius: 50%;
+    background-color: white;
+    object-fit: contain;
+}
+
+.footer-logo strong {
+    display: block;
+    font-size: 17px;
+}
+
+.footer-logo span {
+    display: block;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 15px;
+}
+
+.footer-social {
+    display: flex;
+    gap: 10px;
+}
+
+.footer-social a {
+    width: 38px;
+    height: 38px;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    margin: 0 auto 20px;
-
-    background-color: var(--verde-claro);
-
-    color: var(--verde-escuro);
-
     border-radius: 50%;
-
-    font-size: 32px;
+    background-color: rgba(255, 255, 255, 0.12);
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
 }
 
-/* RESPONSIVO */
+.footer-social a:hover {
+    background-color: white;
+    color: var(--verde-escuro);
+    transform: translateY(-2px);
+}
 
-@media (max-width: 600px) {
+.footer-content > p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 12px;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 768px) {
+
+    header {
+        height: 70px;
+    }
+
+    .navbar {
+        padding: 0 18px;
+    }
+
+    .logo {
+        width: 52px;
+        height: 52px;
+    }
 
     main {
-        padding: 30px 15px;
+        padding: 35px 15px;
     }
 
     .card-clinica {
@@ -313,251 +385,33 @@ main {
     .titulosegundario {
         font-size: 26px;
     }
-}
 
-/* =========================================================
-FOOTER
-========================================================= */
-
-footer {
-
-    background-color: #034C3C;
-
-    color: white;
-
-    box-shadow:
-        0 -4px 12px rgba(0, 0, 0, 0.12);
-
-}
-
-.footer-content {
-
-    width: min(1180px, 94%);
-
-    min-height: 100px;
-
-    margin: 0 auto;
-
-    padding: 20px 0;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 20px;
-
-}
-
-.footer-logo {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-
-}
-
-.footer-logo img {
-
-    width: 52px;
-    height: 52px;
-
-    padding: 4px;
-
-    border-radius: 50%;
-
-    background-color: white;
-
-    object-fit: contain;
-
-
-}
-
-.footer-logo strong {
-
-    display: block;
-
-    font-size: 17px;
-
-}
-
-.footer-logo span {
-
-    display: block;
-
-    color: rgba(255, 255, 255, 0.7);
-
-    font-size: 15px;
-
-}
-
-.footer-social {
-
-    display: flex;
-
-    gap: 10px;
-
-}
-
-.footer-social a {
-
-    width: 38px;
-    height: 38px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    border-radius: 50%;
-
-    background-color: rgba(255, 255, 255, 0.12);
-
-    color: white;
-
-    text-decoration: none;
-
-    transition: 0.3s;
-
-}
-
-.footer-social a:hover {
-
-    background-color: white;
-
-    color: #3E7CB1;
-
-    transform: translateY(-2px);
-
-}
-
-.footer-content>p {
-
-    margin: 0;
-
-    color: rgba(255, 255, 255, 0.75);
-
-    font-size: 12px;
-
-}
-
-.contatos {
-    color: var(--amarelo);
-    font-size: 16px;
-}
-
-@media (max-width: 768px) {
-
-    .titulo {
-        font-size: 30px;
+    .footer-content {
+        flex-direction: column;
         text-align: center;
-        margin-bottom: 30px;
+        padding: 25px 0;
     }
 
-    .mapa {
-        height: 250px;
+    .footer-logo {
+        flex-direction: column;
     }
 
-    .endereco {
-        margin-top: 40px;
-    }
-
-    footer {
-        padding: 15px;
+    .footer-social {
+        justify-content: center;
     }
 }
 
-.logo img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    border-radius: 50%;
-}
+@media (max-width: 400px) {
 
-h1 {
-    text-align: center;
-    font-size: 60px;
-    color: #000;
-}
+    .card-clinica {
+        padding: 35px 20px;
+    }
 
-.btn-login {
-    display: block;
-    width: 200px;
-    height: 40px;
+    .titulosegundario {
+        font-size: 23px;
+    }
 
-    margin: 10px auto 0;
-
-    background-color: var(--amarelo);
-    border: 2px solid #222;
-    border-radius: 5px;
-
-    color: #111;
-    font-size: 16px;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-.btn-login:hover {
-    background-color: #c98e18;
-    color: white;
-}
-
-.btn-login {
-    background-color: var(--amarelo);
-    border: none;
-    color: #000;
-    font-weight: bold;
-    font-size: 17px;
-    padding: 7px 25px;
-    margin-bottom: 12px;
-    border-radius: 4px;
-    line-height: 1.7;
-}
-
-.btn-login:hover {
-    background-color: #c88d16;
-    color: white;
-}
-
-
-.btn-voltar {
-    display: block;
-    width: 50px;
-    height: 30px;
-
-    margin: 10px auto 1;
-
-    background-color: var(--amarelo);
-    border: 200px solid #222;
-    border-radius: 5px;
-    color: #111;
-    font-size: 60px;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-.btn-voltar:hover {
-    background-color: #c98e18;
-    color: white;
-}
-
-.btn-voltar {
-    background-color: var(--amarelo);
-    border: none;
-    color: #000;
-    font-weight: bold;
-    font-size: 20px;
-    padding: 2px 16px;
-    margin-bottom: 1px;
-    border-radius: 4px;
-    line-height: 1.5;
-}
-
-.btn-voltar:hover {
-    background-color: #c88d16;
-    color: white;
+    .login-descricao {
+        font-size: 14px;
+    }
 }

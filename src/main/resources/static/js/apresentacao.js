@@ -1,13 +1,7 @@
-/* =====================================================
-   PATAS & BIGODES — JAVASCRIPT DA APRESENTAÇÃO
-===================================================== */
-
+javascript
 document.addEventListener("DOMContentLoaded", () => {
 
-    /* =====================================================
-       1. ANIMAÇÃO DOS ELEMENTOS AO ROLAR A PÁGINA
-    ===================================================== */
-
+    // Animação dos elementos ao rolar a página
     const elementosAnimados = document.querySelectorAll(
         ".card-principal, .card-recepcao, .beneficio, " +
         ".profissional, .agendamento, .info-item"
@@ -18,21 +12,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     if ("IntersectionObserver" in window) {
-
         const observador = new IntersectionObserver((entradas, observer) => {
-
             entradas.forEach(entrada => {
-
                 if (entrada.isIntersecting) {
-
                     entrada.target.classList.add("visivel");
-
                     observer.unobserve(entrada.target);
-
                 }
-
             });
-
         }, {
             threshold: 0.12
         });
@@ -40,24 +26,16 @@ document.addEventListener("DOMContentLoaded", () => {
         elementosAnimados.forEach(elemento => {
             observador.observe(elemento);
         });
-
     } else {
-
         elementosAnimados.forEach(elemento => {
             elemento.classList.add("visivel");
         });
-
     }
 
-
-    /* =====================================================
-       2. EFEITO NOS CARDS DE BENEFÍCIOS
-    ===================================================== */
-
+    // Efeito nos cards de benefícios
     const beneficios = document.querySelectorAll(".beneficio");
 
     beneficios.forEach(card => {
-
         card.addEventListener("mouseenter", () => {
             card.classList.add("beneficio-destaque");
         });
@@ -65,14 +43,9 @@ document.addEventListener("DOMContentLoaded", () => {
         card.addEventListener("mouseleave", () => {
             card.classList.remove("beneficio-destaque");
         });
-
     });
 
-
-    /* =====================================================
-       3. MENU ATIVO CONFORME A PÁGINA ATUAL
-    ===================================================== */
-
+    // Menu ativo conforme a página atual
     const linksMenu = document.querySelectorAll(".menu-link");
 
     const paginaAtual = window.location.pathname
@@ -81,10 +54,9 @@ document.addEventListener("DOMContentLoaded", () => {
         .toLowerCase();
 
     linksMenu.forEach(link => {
-
         const destino = link.getAttribute("href");
 
-        if (!destino) {
+        if (!destino || destino.startsWith("#")) {
             return;
         }
 
@@ -94,60 +66,41 @@ document.addEventListener("DOMContentLoaded", () => {
             .toLowerCase();
 
         if (paginaDestino === paginaAtual) {
-
             linksMenu.forEach(item => {
                 item.classList.remove("ativo");
             });
 
             link.classList.add("ativo");
-
         }
-
     });
 
-
-    /* =====================================================
-       4. FECHAR MENU MOBILE APÓS CLICAR EM UM LINK
-    ===================================================== */
-
+    // Fechar menu mobile após clicar em um link
     const menuPrincipal = document.getElementById("menuPrincipal");
 
     if (menuPrincipal && window.bootstrap) {
-
         const linksMobile = menuPrincipal.querySelectorAll(".menu-link");
 
         linksMobile.forEach(link => {
-
             link.addEventListener("click", () => {
-
-                if (window.innerWidth < 992 &&
-                    menuPrincipal.classList.contains("show")) {
-
+                if (
+                    window.innerWidth < 992 &&
+                    menuPrincipal.classList.contains("show")
+                ) {
                     const menu = bootstrap.Collapse.getOrCreateInstance(
                         menuPrincipal
                     );
 
                     menu.hide();
-
                 }
-
             });
-
         });
-
     }
 
-
-    /* =====================================================
-       5. NAVEGAÇÃO SUAVE PARA ÂNCORAS
-    ===================================================== */
-
+    // Navegação suave para âncoras
     const linksInternos = document.querySelectorAll('a[href^="#"]');
 
     linksInternos.forEach(link => {
-
         link.addEventListener("click", evento => {
-
             const destino = link.getAttribute("href");
 
             if (!destino || destino === "#") {
@@ -157,43 +110,32 @@ document.addEventListener("DOMContentLoaded", () => {
             const secao = document.querySelector(destino);
 
             if (secao) {
-
                 evento.preventDefault();
 
                 secao.scrollIntoView({
                     behavior: "smooth",
                     block: "start"
                 });
-
             }
-
         });
-
     });
 
-
-    /* =====================================================
-       6. BOTÃO VOLTAR AO TOPO
-    ===================================================== */
-
+    // Botão voltar ao topo
     const botaoTopo = document.createElement("button");
 
     botaoTopo.type = "button";
     botaoTopo.className = "botao-topo";
     botaoTopo.setAttribute("aria-label", "Voltar ao topo");
     botaoTopo.title = "Voltar ao topo";
-
     botaoTopo.innerHTML = '<i class="bi bi-arrow-up"></i>';
 
     document.body.appendChild(botaoTopo);
 
     const atualizarBotaoTopo = () => {
-
         botaoTopo.classList.toggle(
             "botao-topo-visivel",
             window.scrollY > 350
         );
-
     };
 
     window.addEventListener("scroll", atualizarBotaoTopo, {
@@ -203,50 +145,34 @@ document.addEventListener("DOMContentLoaded", () => {
     atualizarBotaoTopo();
 
     botaoTopo.addEventListener("click", () => {
-
         window.scrollTo({
             top: 0,
             behavior: "smooth"
         });
-
     });
 
-
-    /* =====================================================
-       7. ANO AUTOMÁTICO NO RODAPÉ
-    ===================================================== */
-
+    // Ano automático no rodapé
     const copyright = document.querySelector(".footer-content p");
 
     if (copyright) {
-
         copyright.innerHTML = copyright.innerHTML.replace(
             /©\s*\d{4}/,
             `© ${new Date().getFullYear()}`
         );
-
     }
 
-
-    /* =====================================================
-       8. PROTEÇÃO CONTRA ERROS NAS IMAGENS
-    ===================================================== */
-
+    // Proteção contra erros nas imagens
     const imagens = document.querySelectorAll("img");
 
     imagens.forEach(imagem => {
-
         imagem.addEventListener("error", () => {
-
             imagem.classList.add("imagem-indisponivel");
 
             console.warn(
                 "Não foi possível carregar a imagem:",
                 imagem.getAttribute("src")
             );
-
         });
-
     });
 
 });

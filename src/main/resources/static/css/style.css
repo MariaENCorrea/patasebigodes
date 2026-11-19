@@ -1,10 +1,10 @@
-
 /* ==========================================
    PATAS & BIGODES
    Estilo moderno e responsivo
 ========================================== */
 
 /* PALETA DE CORES */
+
 :root {
     --verde-escuro: #034C3C;
     --verde: #4D8B7D;
@@ -37,7 +37,7 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 30px;
+    scroll-padding-top: 90px;
 }
 
 body {
@@ -56,34 +56,34 @@ img {
     display: block;
 }
 
+section {
+    scroll-margin-top: 85px;
+}
+
 /* ==========================================
    CABEÇALHO
 ========================================== */
 
 header {
     width: 100%;
-    height: 85px;
+    min-height: 85px;
     background-color: var(--verde-escuro);
 
-    display: flex;
-    align-items: center;
-
-    position: relative;
-    z-index: 10;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 
     box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
 }
 
 .navbar {
     width: 100%;
-    height: 100%;
-    padding: 0 7%;
+    min-height: 85px;
+    padding: 8px 0;
 }
 
-.navbar .container-fluid {
-    height: 100%;
-    display: flex;
-    align-items: center;
+.navbar .container {
+    min-height: 65px;
 }
 
 .logo {
@@ -94,12 +94,10 @@ header {
 .logo img {
     width: 65px;
     height: 65px;
-
     object-fit: contain;
 
     background-color: var(--branco);
     border-radius: 50%;
-
     padding: 5px;
 
     transition: transform 0.3s ease;
@@ -109,40 +107,149 @@ header {
     transform: scale(1.08) rotate(-5deg);
 }
 
+/* MENU */
+
+.navbar-nav {
+    gap: 8px;
+}
+
+.navbar-nav .nav-link {
+    color: var(--branco);
+    font-size: 16px;
+    font-weight: 600;
+    padding: 12px 15px;
+
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.ativo {
+    color: var(--dourado);
+}
+
+.navbar-toggler {
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 3px rgba(222, 158, 54, 0.3);
+}
+
+.navbar-toggler-icon {
+    filter: brightness(0) invert(1);
+}
+
+/* ==========================================
+   BOTÕES
+========================================== */
+
+.btn-clinica,
+.btn-outline-clinica {
+    min-width: 155px;
+    padding: 14px 23px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    border-radius: 12px;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    transition: all 0.3s ease;
+}
+
+.btn-clinica {
+    background-color: var(--verde-escuro);
+    color: var(--branco);
+
+    border: 2px solid var(--verde-escuro);
+
+    box-shadow: 0 7px 18px rgba(3, 76, 60, 0.15);
+}
+
+.btn-clinica i {
+    font-size: 19px;
+}
+
+.btn-clinica:hover {
+    background-color: var(--dourado);
+    border-color: var(--dourado);
+    color: var(--branco);
+
+    transform: translateY(-4px);
+
+    box-shadow: 0 10px 22px rgba(222, 158, 54, 0.25);
+}
+
+/* Botão Entrar no cabeçalho */
+
+.navbar-nav .btn-clinica {
+    background-color: var(--dourado);
+    border-color: var(--dourado);
+    color: var(--verde-escuro);
+
+    box-shadow: none;
+}
+
+.navbar-nav .btn-clinica:hover {
+    background-color: var(--branco);
+    border-color: var(--branco);
+    color: var(--verde-escuro);
+}
+
+.btn-outline-clinica {
+    background-color: transparent;
+    color: var(--verde-escuro);
+
+    border: 2px solid var(--verde-escuro);
+}
+
+.btn-outline-clinica:hover {
+    background-color: var(--verde-escuro);
+    color: var(--branco);
+
+    transform: translateY(-4px);
+}
+
+.btn-clinica:active,
+.btn-outline-clinica:active {
+    transform: scale(0.97);
+}
+
 /* ==========================================
    SEÇÃO INICIAL
 ========================================== */
 
 .inicio {
     min-height: 650px;
-
-    padding: 65px 5%;
+    padding: 80px 0;
 
     display: flex;
     align-items: center;
-    justify-content: center;
 
     position: relative;
     overflow: hidden;
 
     background:
-        radial-gradient(
-            circle at 10% 15%,
-            rgba(118, 169, 154, 0.18),
-            transparent 30%
-        ),
-        linear-gradient(
-            135deg,
-            #F1F7F3 0%,
-            #E2EFE7 55%,
-            #D7E9DE 100%
-        );
+            radial-gradient(
+                    circle at 10% 15%,
+                    rgba(118, 169, 154, 0.18),
+                    transparent 30%
+            ),
+            linear-gradient(
+                    135deg,
+                    #F1F7F3 0%,
+                    #E2EFE7 55%,
+                    #D7E9DE 100%
+            );
 }
-
-/* Detalhes decorativos */
 
 .inicio::before {
     content: "";
+
     position: absolute;
 
     width: 350px;
@@ -157,6 +264,7 @@ header {
 
 .inicio::after {
     content: "";
+
     position: absolute;
 
     width: 250px;
@@ -169,30 +277,12 @@ header {
     left: -80px;
 }
 
-/* Cartão principal */
-
-.card-clinica {
-    width: 100%;
-    max-width: 1200px;
-
-    padding: 55px 45px;
-
-    background-color: rgba(255, 255, 255, 0.82);
-
-    border: 1px solid rgba(255, 255, 255, 0.9);
-    border-radius: 30px;
-
-    box-shadow: var(--sombra-forte);
-
+.inicio .container {
     position: relative;
     z-index: 1;
-
-    backdrop-filter: blur(12px);
 }
 
-/* ==========================================
-   CONTEÚDO DA APRESENTAÇÃO
-========================================== */
+/* CONTEÚDO */
 
 .conteudo {
     padding: 20px 25px;
@@ -216,10 +306,13 @@ header {
     margin-bottom: 25px;
 }
 
-.tagline::before {
-    content: "♥";
+.tagline i {
     color: var(--dourado);
-    font-size: 17px;
+    font-size: 16px;
+}
+
+.tagline::before {
+    content: none;
 }
 
 .titulo {
@@ -228,7 +321,7 @@ header {
     font-size: clamp(40px, 5vw, 65px);
     font-weight: 800;
 
-    line-height: 1.08;
+    line-height: 1.12;
     letter-spacing: -2px;
 
     margin-bottom: 25px;
@@ -239,7 +332,7 @@ header {
 }
 
 .descricao {
-    max-width: 470px;
+    max-width: 490px;
 
     color: var(--texto-suave);
 
@@ -249,10 +342,6 @@ header {
     margin-bottom: 35px;
 }
 
-/* ==========================================
-   BOTÕES
-========================================== */
-
 .botoes {
     display: flex;
     align-items: center;
@@ -260,52 +349,7 @@ header {
     gap: 16px;
 }
 
-.btn-clinica {
-    min-width: 155px;
-
-    padding: 15px 25px;
-
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-
-    background-color: var(--verde-escuro);
-    color: var(--branco);
-
-    border: 2px solid var(--verde-escuro);
-    border-radius: 12px;
-
-    font-size: 16px;
-    font-weight: 600;
-
-    box-shadow: 0 7px 18px rgba(3, 76, 60, 0.15);
-
-    transition: all 0.3s ease;
-}
-
-.btn-clinica i {
-    font-size: 19px;
-}
-
-.btn-clinica:hover {
-    background-color: var(--dourado);
-    border-color: var(--dourado);
-
-    color: var(--branco);
-
-    transform: translateY(-4px);
-
-    box-shadow: 0 10px 22px rgba(222, 158, 54, 0.25);
-}
-
-.btn-clinica:active {
-    transform: scale(0.97);
-}
-
-/* ==========================================
-   IMAGEM DOS ANIMAIS
-========================================== */
+/* IMAGEM PRINCIPAL */
 
 .animais {
     width: 100%;
@@ -348,43 +392,310 @@ header {
 }
 
 /* ==========================================
-   LOCALIZAÇÃO
+   TÍTULOS DAS SEÇÕES
 ========================================== */
 
-.localizacao {
-    padding: 90px 5% 100px;
-
-    background-color: var(--branco);
-}
-
-.titulo-localizacao {
+.titulo-secao {
     text-align: center;
-    margin-bottom: 55px;
+    max-width: 750px;
+
+    margin: 0 auto 55px;
 }
 
-.titulo-localizacao h2 {
+.titulo-secao .tagline {
+    margin-bottom: 18px;
+}
+
+.titulo-secao h2 {
     color: var(--verde-escuro);
 
     font-size: clamp(30px, 4vw, 42px);
     font-weight: 800;
 
-    margin-bottom: 15px;
+    line-height: 1.2;
+
+    margin-bottom: 18px;
 }
 
-.titulo-localizacao h2 i {
+.titulo-secao h2 i {
     color: var(--dourado);
     margin-right: 8px;
 }
 
-.titulo-localizacao p {
+.titulo-secao p:not(.tagline) {
     color: var(--texto-suave);
+
     font-size: 16px;
-    line-height: 1.7;
+    line-height: 1.8;
 }
 
 /* ==========================================
-   MAPA
+   SOBRE A CLÍNICA
 ========================================== */
+
+.sobre {
+    padding: 100px 0;
+    background-color: var(--branco);
+}
+
+.sobre-imagem {
+    position: relative;
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+.sobre-imagem::before {
+    content: "";
+
+    position: absolute;
+    inset: -12px;
+
+    border: 2px solid var(--dourado);
+    border-radius: 30px;
+
+    transform: rotate(-3deg);
+    z-index: 0;
+}
+
+.sobre-imagem img {
+    width: 100%;
+    height: 400px;
+
+    object-fit: cover;
+
+    border-radius: 25px;
+
+    box-shadow: var(--sombra-forte);
+
+    position: relative;
+    z-index: 1;
+}
+
+.sobre-conteudo {
+    padding: 20px 15px;
+}
+
+.sobre-conteudo h2 {
+    color: var(--verde-escuro);
+
+    font-size: clamp(30px, 4vw, 43px);
+    font-weight: 800;
+
+    line-height: 1.2;
+
+    margin-bottom: 25px;
+}
+
+.sobre-conteudo h2 span {
+    color: var(--dourado);
+}
+
+.sobre-conteudo p:not(.tagline) {
+    color: var(--texto-suave);
+
+    font-size: 16px;
+    line-height: 1.9;
+
+    margin-bottom: 20px;
+}
+
+.sobre-conteudo .btn-clinica {
+    margin-top: 10px;
+}
+
+/* ==========================================
+   SERVIÇOS
+========================================== */
+
+.servicos {
+    padding: 100px 0;
+
+    background:
+            linear-gradient(
+                    135deg,
+                    #F1F7F3,
+                    #E2EFE7
+            );
+}
+
+.card-servico {
+    height: 100%;
+
+    padding: 35px 25px;
+
+    text-align: center;
+
+    background-color: var(--branco);
+
+    border: 1px solid rgba(3, 76, 60, 0.07);
+    border-radius: var(--raio);
+
+    box-shadow: var(--sombra);
+
+    transition: all 0.35s ease;
+}
+
+.card-servico:hover {
+    transform: translateY(-10px);
+
+    box-shadow: var(--sombra-forte);
+
+    border-color: var(--verde-medio);
+}
+
+.icone-servico {
+    width: 75px;
+    height: 75px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 25px;
+
+    background-color: var(--verde-claro);
+    color: var(--verde-escuro);
+
+    border-radius: 22px;
+
+    font-size: 32px;
+
+    transition: all 0.3s ease;
+}
+
+.card-servico:hover .icone-servico {
+    background-color: var(--verde-escuro);
+    color: var(--branco);
+
+    transform: rotate(-5deg);
+}
+
+.card-servico h3 {
+    color: var(--verde-escuro);
+
+    font-size: 22px;
+    font-weight: 700;
+
+    margin-bottom: 15px;
+}
+
+.card-servico p {
+    color: var(--texto-suave);
+
+    font-size: 15px;
+    line-height: 1.8;
+
+    margin: 0;
+}
+
+/* ==========================================
+   CHAMADA PARA CADASTRO
+========================================== */
+
+.chamada-cadastro {
+    padding: 85px 0;
+
+    background:
+            linear-gradient(
+                    135deg,
+                    var(--verde-escuro),
+                    #075C49
+            );
+
+    position: relative;
+    overflow: hidden;
+}
+
+.chamada-cadastro::before {
+    content: "";
+
+    position: absolute;
+
+    width: 280px;
+    height: 280px;
+
+    border: 2px solid rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+
+    top: -130px;
+    left: -80px;
+}
+
+.chamada-cadastro::after {
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    background-color: rgba(222, 158, 54, 0.08);
+    border-radius: 50%;
+
+    bottom: -120px;
+    right: -50px;
+}
+
+.chamada-conteudo {
+    max-width: 750px;
+
+    margin: 0 auto;
+
+    text-align: center;
+
+    position: relative;
+    z-index: 1;
+}
+
+.chamada-conteudo > i {
+    color: var(--dourado);
+
+    font-size: 45px;
+
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.chamada-conteudo h2 {
+    color: var(--branco);
+
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 800;
+
+    margin-bottom: 18px;
+}
+
+.chamada-conteudo p {
+    color: rgba(255, 255, 255, 0.85);
+
+    font-size: 17px;
+    line-height: 1.8;
+
+    margin-bottom: 30px;
+}
+
+.chamada-conteudo .btn-clinica {
+    background-color: var(--dourado);
+    border-color: var(--dourado);
+    color: var(--verde-escuro);
+}
+
+.chamada-conteudo .btn-clinica:hover {
+    background-color: var(--branco);
+    border-color: var(--branco);
+    color: var(--verde-escuro);
+}
+
+/* ==========================================
+   LOCALIZAÇÃO
+========================================== */
+
+.localizacao {
+    padding: 100px 0;
+    background-color: var(--branco);
+}
+
+/* MAPA */
 
 .mapa-container {
     width: 100%;
@@ -415,19 +726,19 @@ header {
     border-radius: 18px;
 }
 
-/* ==========================================
-   ENDEREÇO
-========================================== */
+/* ENDEREÇO */
 
 .endereco {
+    height: 100%;
+
     padding: 38px 32px;
 
     background:
-        linear-gradient(
-            145deg,
-            #F1F7F3,
-            #D7E9DE
-        );
+            linear-gradient(
+                    145deg,
+                    #F1F7F3,
+                    #D7E9DE
+            );
 
     border: 1px solid #D5E8DD;
     border-radius: var(--raio);
@@ -485,135 +796,103 @@ header {
 ========================================== */
 
 footer {
+    background-color: var(--verde-escuro);
+    color: var(--branco);
 
-    background-color: #034C3C;
-
-    color: white;
-
-    box-shadow:
-        0 -4px 12px rgba(0, 0, 0, 0.12);
-
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.12);
 }
 
 .footer-content {
+    width: 100%;
+    max-width: 1180px;
 
-    width: min(1180px, 94%);
-
-    min-height: 100px;
+    min-height: 120px;
 
     margin: 0 auto;
-
-    padding: 20px 0;
+    padding: 25px 15px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
 
-    gap: 20px;
-
+    gap: 25px;
 }
 
 .footer-logo {
-
     display: flex;
-
     align-items: center;
-
     gap: 12px;
-
 }
 
 .footer-logo img {
-
     width: 52px;
     height: 52px;
 
     padding: 4px;
 
     border-radius: 50%;
-
-    background-color: white;
+    background-color: var(--branco);
 
     object-fit: contain;
-
-
 }
 
 .footer-logo strong {
-
     display: block;
-
     font-size: 17px;
-
 }
 
 .footer-logo span {
-
     display: block;
 
     color: rgba(255, 255, 255, 0.7);
 
-    font-size: 15px;
-
+    font-size: 14px;
 }
 
 .footer-social {
-
     display: flex;
-
-    gap: 10px;
-
+    gap: 12px;
 }
 
 .footer-social a {
-
-    width: 38px;
-    height: 38px;
+    width: 42px;
+    height: 42px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     border-radius: 50%;
 
     background-color: rgba(255, 255, 255, 0.12);
+    color: var(--branco);
 
-    color: white;
+    font-size: 19px;
 
-    text-decoration: none;
-
-    transition: 0.3s;
-
+    transition: all 0.3s ease;
 }
 
 .footer-social a:hover {
+    background-color: var(--branco);
+    color: var(--verde-escuro);
 
-    background-color: white;
-
-    color: #3E7CB1;
-
-    transform: translateY(-2px);
-
+    transform: translateY(-4px);
 }
 
-.footer-content>p {
-
+.footer-content > p {
     margin: 0;
 
     color: rgba(255, 255, 255, 0.75);
 
     font-size: 12px;
-
+    text-align: right;
 }
 
 .contatos {
-    color: var(--amarelo);
+    color: var(--dourado);
     font-size: 16px;
 }
+
 /* ==========================================
    ANIMAÇÕES COM JAVASCRIPT
 ========================================== */
@@ -623,8 +902,8 @@ footer {
     transform: translateY(30px);
 
     transition:
-        opacity 0.8s ease,
-        transform 0.8s ease;
+            opacity 0.8s ease,
+            transform 0.8s ease;
 }
 
 .reveal.is-visible {
@@ -636,7 +915,8 @@ footer {
    ACESSIBILIDADE
 ========================================== */
 
-a:focus-visible {
+a:focus-visible,
+button:focus-visible {
     outline: 3px solid var(--dourado);
     outline-offset: 5px;
 }
@@ -647,12 +927,32 @@ a:focus-visible {
 
 @media (max-width: 991px) {
 
-    .inicio {
-        padding: 45px 4%;
+    .navbar-collapse {
+        width: 100%;
+        padding: 15px 20px 20px;
+
+        background-color: var(--verde-escuro);
+
+        border-radius: 0 0 15px 15px;
     }
 
-    .card-clinica {
-        padding: 40px 25px;
+    .navbar-nav {
+        align-items: stretch !important;
+        gap: 5px;
+    }
+
+    .navbar-nav .nav-link {
+        padding: 10px 5px;
+    }
+
+    .navbar-nav .btn-clinica {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .inicio {
+        min-height: auto;
+        padding: 65px 0;
     }
 
     .conteudo {
@@ -664,15 +964,39 @@ a:focus-visible {
     }
 
     .animais {
-        margin-top: 30px;
+        margin-top: 25px;
     }
 
     .animais img {
         height: 350px;
     }
 
+    .sobre,
+    .servicos,
     .localizacao {
-        padding: 70px 5%;
+        padding: 75px 0;
+    }
+
+    .sobre-imagem img {
+        height: 350px;
+    }
+
+    .card-servico {
+        padding: 30px 20px;
+    }
+
+    .footer-content {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .footer-logo,
+    .footer-social,
+    .footer-content > p {
+        flex: 1 1 100%;
+        justify-content: center;
+        text-align: center;
     }
 }
 
@@ -682,12 +1006,9 @@ a:focus-visible {
 
 @media (max-width: 576px) {
 
-    header {
-        height: 72px;
-    }
-
+    header,
     .navbar {
-        padding: 0 5%;
+        min-height: 72px;
     }
 
     .logo img {
@@ -696,13 +1017,7 @@ a:focus-visible {
     }
 
     .inicio {
-        min-height: auto;
-        padding: 35px 15px 50px;
-    }
-
-    .card-clinica {
-        padding: 28px 18px;
-        border-radius: 22px;
+        padding: 45px 0 55px;
     }
 
     .tagline {
@@ -711,7 +1026,7 @@ a:focus-visible {
     }
 
     .titulo {
-        font-size: 43px;
+        font-size: 42px;
         letter-spacing: -1.5px;
     }
 
@@ -725,12 +1040,12 @@ a:focus-visible {
         align-items: stretch;
     }
 
-    .btn-clinica {
+    .botoes .btn {
         width: 100%;
     }
 
     .animais {
-        margin-top: 35px;
+        margin-top: 25px;
     }
 
     .animais img {
@@ -743,16 +1058,58 @@ a:focus-visible {
         border-radius: 25px;
     }
 
+    .sobre,
+    .servicos,
     .localizacao {
-        padding: 60px 18px;
+        padding: 60px 0;
     }
 
-    .titulo-localizacao {
+    .sobre-imagem img {
+        height: 280px;
+    }
+
+    .sobre-imagem::before {
+        inset: -8px;
+    }
+
+    .sobre-conteudo {
+        padding: 15px 5px;
+    }
+
+    .sobre-conteudo h2 {
+        font-size: 31px;
+    }
+
+    .sobre-conteudo p:not(.tagline) {
+        font-size: 15px;
+    }
+
+    .titulo-secao {
         margin-bottom: 35px;
     }
 
-    .titulo-localizacao p {
+    .titulo-secao h2 {
+        font-size: 30px;
+    }
+
+    .titulo-secao p:not(.tagline) {
         font-size: 14px;
+    }
+
+    .card-servico {
+        padding: 30px 22px;
+    }
+
+    .chamada-cadastro {
+        padding: 65px 15px;
+    }
+
+    .chamada-conteudo h2 {
+        font-size: 29px;
+    }
+
+    .chamada-conteudo p {
+        font-size: 15px;
     }
 
     .mapa-container {
@@ -772,12 +1129,12 @@ a:focus-visible {
     }
 
     footer {
-        padding: 30px 20px 20px;
+        padding: 25px 15px 15px;
     }
 
     .footer-content {
-        justify-content: center;
-        text-align: center;
+        flex-direction: column;
+        gap: 20px;
     }
 
     .footer-logo {

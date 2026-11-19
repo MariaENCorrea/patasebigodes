@@ -1,17 +1,11 @@
+
 document.addEventListener("DOMContentLoaded", function () {
 
-    // =========================================
-    // ELEMENTOS DO FORMULÁRIO
-    // =========================================
-
-    const formularioAnimal = document.querySelectorAll(".formulario")[0];
-    const formularioProprietario = document.querySelectorAll(".formulario")[1];
-    const botaoCadastrar = document.querySelector(".btn-cadastrar");
+    const formulario = document.getElementById("formularioCadastro");
 
     const nomeAnimal = document.getElementById("nomeAnimal");
     const idade = document.getElementById("idade");
     const especie = document.getElementById("especie");
-    const raca = document.getElementById("raca");
 
     const proprietario = document.getElementById("proprietario");
     const cpf = document.getElementById("cpf");
@@ -21,9 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const cidade = document.getElementById("cidade");
     const bairro = document.getElementById("bairro");
 
-    // =========================================
-    // FUNÇÕES AUXILIARES
-    // =========================================
+    formulario.noValidate = true;
 
     function somenteNumeros(valor) {
         return valor.replace(/\D/g, "");
@@ -75,9 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return true;
     }
 
-    // =========================================
     // MÁSCARA DE CPF
-    // =========================================
 
     cpf.addEventListener("input", function () {
 
@@ -90,18 +80,16 @@ document.addEventListener("DOMContentLoaded", function () {
         this.value = valor;
     });
 
-    // =========================================
     // MÁSCARA DE CELULAR
-    // =========================================
 
     numero.addEventListener("input", function () {
 
         let valor = somenteNumeros(this.value).slice(0, 11);
 
         if (valor.length > 10) {
-            valor = valor.replace(/^(\d{2})(\d{5})(\d{4}).*/, "($1) $2-$3");
+            valor = valor.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1) $2-$3");
         } else if (valor.length > 6) {
-            valor = valor.replace(/^(\d{2})(\d{4})(\d{1,4}).*/, "($1) $2-$3");
+            valor = valor.replace(/^(\d{2})(\d{4})(\d{1,4})$/, "($1) $2-$3");
         } else if (valor.length > 2) {
             valor = valor.replace(/^(\d{2})(\d+)/, "($1) $2");
         } else if (valor.length > 0) {
@@ -111,19 +99,13 @@ document.addEventListener("DOMContentLoaded", function () {
         this.value = valor;
     });
 
-    // =========================================
     // VALIDAÇÃO DE CPF
-    // =========================================
 
     function validarCPF(valor) {
 
         const numeroCPF = somenteNumeros(valor);
 
-        if (numeroCPF.length !== 11) {
-            return false;
-        }
-
-        if (/^(\d)\1{10}$/.test(numeroCPF)) {
+        if (numeroCPF.length !== 11 || /^(\d)\1{10}$/.test(numeroCPF)) {
             return false;
         }
 
@@ -158,31 +140,21 @@ document.addEventListener("DOMContentLoaded", function () {
         return digito2 === Number(numeroCPF[10]);
     }
 
-    // =========================================
-    // VALIDAÇÃO DO E-MAIL
-    // =========================================
+    // VALIDAÇÃO DE E-MAIL
 
     function validarEmail(valor) {
-
         const formatoEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
         return formatoEmail.test(valor);
     }
 
-    // =========================================
-    // VALIDAÇÃO DO CELULAR
-    // =========================================
+    // VALIDAÇÃO DE CELULAR
 
     function validarCelular(valor) {
-
         const telefone = somenteNumeros(valor);
-
         return telefone.length === 10 || telefone.length === 11;
     }
 
-    // =========================================
     // VALIDAÇÃO DOS DADOS DO ANIMAL
-    // =========================================
 
     function validarAnimal() {
 
@@ -203,15 +175,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const idadeAnimal = Number(idade.value);
 
-            if (!Number.isInteger(idadeAnimal) || idadeAnimal < 0) {
-                mostrarErro(idade, "Informe uma idade válida.");
+            if (!Number.isInteger(idadeAnimal) || idadeAnimal < 0 || idadeAnimal > 100) {
+                mostrarErro(idade, "Informe uma idade entre 0 e 100 anos.");
                 valido = false;
             } else {
                 mostrarSucesso(idade);
             }
+
+        } else {
+            limparValidacao(idade);
         }
 
-        if (!especie.value || especie.selectedIndex === 0) {
+        if (!especie.value) {
             mostrarErro(especie, "Selecione a espécie do animal.");
             valido = false;
         } else {
@@ -221,9 +196,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return valido;
     }
 
-    // =========================================
     // VALIDAÇÃO DOS DADOS DO PROPRIETÁRIO
-    // =========================================
 
     function validarProprietario() {
 
@@ -242,13 +215,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 mostrarSucesso(cpf);
             }
 
+        } else {
+            limparValidacao(cpf);
         }
 
-        if (rg.value.trim() === "") {
-            mostrarErro(rg, "Informe o RG do proprietário.");
+        if (!validarObrigatorio(rg, "Informe o RG do proprietário.")) {
             valido = false;
-        } else {
-            mostrarSucesso(rg);
         }
 
         if (!validarObrigatorio(numero, "Informe seu número de celular.")) {
@@ -280,9 +252,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return valido;
     }
 
-    // =========================================
     // VALIDAÇÃO AO DIGITAR
-    // =========================================
 
     document.querySelectorAll(".form-control, .form-select").forEach(function (campo) {
 
@@ -296,18 +266,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
-    // =========================================
     // FINALIZAR CADASTRO
-    // =========================================
 
-    botaoCadastrar.addEventListener("click", function (evento) {
-
-        evento.preventDefault();
+    formulario.addEventListener("submit", function (evento) {
 
         const animalValido = validarAnimal();
         const proprietarioValido = validarProprietario();
 
         if (!animalValido || !proprietarioValido) {
+
+            evento.preventDefault();
 
             const primeiroErro = document.querySelector(".is-invalid");
 
@@ -328,14 +296,8 @@ document.addEventListener("DOMContentLoaded", function () {
             "Deseja finalizar o cadastro?"
         );
 
-        if (confirmar) {
-
-            alert(
-                "Validação concluída!\n\n" +
-                "Para salvar os dados do proprietário e do animal, " +
-                "é necessário conectar o formulário ao sistema de cadastro."
-            );
-
+        if (!confirmar) {
+            evento.preventDefault();
         }
 
     });
