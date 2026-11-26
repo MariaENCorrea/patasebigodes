@@ -150,4 +150,8 @@ public class Tutor {
     public List<Animal> getAnimais() {
         return animais;
     }
+
+    public void setAnimais(List<Animal> animais) {
+        this.animais = animais;
+    }
 }

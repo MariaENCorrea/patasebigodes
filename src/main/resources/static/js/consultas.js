@@ -1,4 +1,4 @@
-javascript
+
 "use strict";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -21,18 +21,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const opcoesPet = document.querySelector(".opcoes-pet");
 
-    if (!botaoConfirmar || !modalElemento) {
-        console.error("Elementos de agendamento não encontrados.");
-        return;
-    }
-
     if (
-        !nomePet || !raca || !idade ||
-        !nomeTutor || !celular || !email ||
-        !consulta || !especialidade || !data ||
-        !horario || !opcoesPet
+        !botaoConfirmar ||
+        !modalElemento ||
+        !nomePet ||
+        !raca ||
+        !idade ||
+        !nomeTutor ||
+        !celular ||
+        !email ||
+        !consulta ||
+        !especialidade ||
+        !data ||
+        !horario ||
+        !opcoesPet
     ) {
-        console.error("Um ou mais campos do formulário não foram encontrados.");
+        console.error("Elementos do formulário de consultas não encontrados.");
         return;
     }
 
@@ -41,7 +45,8 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    const modalConfirmacao = bootstrap.Modal.getOrCreateInstance(modalElemento);
+    const modalConfirmacao =
+        bootstrap.Modal.getOrCreateInstance(modalElemento);
 
     function obterDataLocal() {
         const hoje = new Date();
@@ -59,20 +64,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
     celular.addEventListener("input", () => {
 
-        let numero = celular.value.replace(/\D/g, "").substring(0, 11);
+        let numero = celular.value
+            .replace(/\D/g, "")
+            .substring(0, 11);
 
         if (numero.length <= 10) {
+
             numero = numero.replace(/^(\d{2})(\d)/, "($1) $2");
             numero = numero.replace(/(\d{4})(\d)/, "$1-$2");
+
         } else {
+
             numero = numero.replace(/^(\d{2})(\d)/, "($1) $2");
             numero = numero.replace(/(\d{5})(\d)/, "$1-$2");
+
         }
 
         celular.value = numero;
+
+        limparErro(celular);
     });
 
-    // Limpar erros
+    // Limpar erro de um campo
 
     function limparErro(campo) {
 
@@ -81,12 +94,16 @@ document.addEventListener("DOMContentLoaded", () => {
         campo.classList.remove("is-invalid");
         campo.removeAttribute("aria-invalid");
 
-        const mensagem = campo.parentElement.querySelector(".mensagem-erro");
+        const mensagemErro = campo.parentElement
+            ? campo.parentElement.querySelector(".mensagem-erro")
+            : null;
 
-        if (mensagem) {
-            mensagem.remove();
+        if (mensagemErro) {
+            mensagemErro.remove();
         }
     }
+
+    // Limpar todos os erros
 
     function limparTodosErros() {
 
@@ -102,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
         opcoesPet.classList.remove("border-danger");
     }
 
-    // Mostrar erros
+    // Mostrar erro
 
     function mostrarErro(campo, mensagem) {
 
@@ -111,11 +128,14 @@ document.addEventListener("DOMContentLoaded", () => {
         campo.classList.add("is-invalid");
         campo.setAttribute("aria-invalid", "true");
 
-        let mensagemErro = campo.parentElement.querySelector(".mensagem-erro");
+        let mensagemErro = campo.parentElement
+            ? campo.parentElement.querySelector(".mensagem-erro")
+            : null;
 
         if (!mensagemErro) {
+
             mensagemErro = document.createElement("small");
-            mensagemErro.className = "mensagem-erro text-danger";
+            mensagemErro.className = "mensagem-erro text-danger d-block";
             mensagemErro.setAttribute("role", "alert");
 
             campo.insertAdjacentElement("afterend", mensagemErro);
@@ -135,18 +155,24 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
         if (!animalSelecionado) {
+
             opcoesPet.classList.add("border-danger");
             valido = false;
+
         }
 
         if (nomePet.value.trim().length < 2) {
+
             mostrarErro(nomePet, "Informe o nome do seu pet.");
             valido = false;
+
         }
 
         if (raca.value.trim() === "") {
+
             mostrarErro(raca, "Informe a espécie ou raça do pet.");
             valido = false;
+
         }
 
         const idadePet = Number(idade.value);
@@ -154,10 +180,12 @@ document.addEventListener("DOMContentLoaded", () => {
         if (
             idade.value.trim() === "" ||
             !Number.isFinite(idadePet) ||
-            idadePet <= 0
+            idadePet < 0
         ) {
+
             mostrarErro(idade, "Informe uma idade válida.");
             valido = false;
+
         }
 
         return valido;
@@ -170,22 +198,31 @@ document.addEventListener("DOMContentLoaded", () => {
         let valido = true;
 
         if (nomeTutor.value.trim().length < 3) {
+
             mostrarErro(nomeTutor, "Informe seu nome completo.");
             valido = false;
+
         }
 
         const numeroCelular = celular.value.replace(/\D/g, "");
 
-        if (numeroCelular.length !== 10 && numeroCelular.length !== 11) {
+        if (
+            numeroCelular.length !== 10 &&
+            numeroCelular.length !== 11
+        ) {
+
             mostrarErro(celular, "Informe um telefone válido com DDD.");
             valido = false;
+
         }
 
         const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         if (!emailValido.test(email.value.trim())) {
+
             mostrarErro(email, "Informe um endereço de e-mail válido.");
             valido = false;
+
         }
 
         return valido;
@@ -197,14 +234,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
         let valido = true;
 
-        if (!consulta.value || consulta.selectedIndex < 0) {
+        if (!consulta.value) {
+
             mostrarErro(consulta, "Selecione o tipo de consulta.");
             valido = false;
+
         }
 
-        if (!especialidade.value || especialidade.selectedIndex === 0) {
+        if (!especialidade.value) {
+
             mostrarErro(especialidade, "Selecione uma especialidade.");
             valido = false;
+
         }
 
         if (!data.value) {
@@ -231,18 +272,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 mostrarErro(data, "A clínica não realiza atendimentos aos domingos.");
                 valido = false;
+
             }
+
         }
 
-        if (!horario.value || horario.selectedIndex === 0) {
+        if (!horario.value) {
+
             mostrarErro(horario, "Selecione um horário disponível.");
             valido = false;
+
         }
 
         return valido;
     }
 
-    // Limpar erros ao preencher os campos
+    // Limpar erros ao alterar os campos
 
     const campos = [
         nomePet,
@@ -272,7 +317,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
-    // Criar elemento de texto para o modal
+    // Adicionar informações ao modal
 
     function adicionarInformacao(container, titulo, valor, ultima = false) {
 
@@ -282,7 +327,9 @@ document.addEventListener("DOMContentLoaded", () => {
         destaque.textContent = `${titulo}: `;
 
         paragrafo.appendChild(destaque);
-        paragrafo.appendChild(document.createTextNode(valor));
+        paragrafo.appendChild(
+            document.createTextNode(valor || "Não informado")
+        );
 
         if (ultima) {
             paragrafo.classList.add("mb-0");
@@ -329,7 +376,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         adicionarInformacao(dados, "Pet", nomePet.value.trim());
         adicionarInformacao(dados, "Tutor", nomeTutor.value.trim());
-        adicionarInformacao(dados, "Animal", animalSelecionado.value);
+
+        adicionarInformacao(
+            dados,
+            "Animal",
+            animalSelecionado ? animalSelecionado.value : ""
+        );
+
         adicionarInformacao(dados, "Consulta", consulta.value);
         adicionarInformacao(dados, "Especialidade", especialidade.value);
         adicionarInformacao(dados, "Data", dataFormatada);
@@ -349,7 +402,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Confirmar agendamento
 
-    botaoConfirmar.addEventListener("click", () => {
+    botaoConfirmar.addEventListener("click", event => {
+
+        event.preventDefault();
 
         limparTodosErros();
 
@@ -362,20 +417,25 @@ document.addEventListener("DOMContentLoaded", () => {
             const primeiroErro = document.querySelector(".is-invalid");
 
             if (primeiroErro) {
+
                 primeiroErro.focus();
+
             } else if (opcoesPet.classList.contains("border-danger")) {
-                const primeiroRadio = document.querySelector('input[name="animal"]');
+
+                const primeiroRadio = document.querySelector(
+                    'input[name="animal"]'
+                );
 
                 if (primeiroRadio) {
                     primeiroRadio.focus();
                 }
+
             }
 
             return;
         }
 
         mostrarConfirmacao();
-
     });
 
     console.log("Sistema de consultas Patas & Bigodes inicializado!");

@@ -9,9 +9,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const proprietario = document.getElementById("proprietario");
     const cpf = document.getElementById("cpf");
-    const rg = document.getElementById("rg");
     const numero = document.getElementById("numero");
     const email = document.getElementById("email");
+    const senha = document.getElementById("senha");
     const cidade = document.getElementById("cidade");
     const bairro = document.getElementById("bairro");
 
@@ -22,14 +22,18 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function mostrarErro(campo, mensagem) {
+
         campo.classList.add("is-invalid");
         campo.classList.remove("is-valid");
 
         let mensagemErro = campo.nextElementSibling;
 
-        if (!mensagemErro || !mensagemErro.classList.contains("invalid-feedback")) {
+        if (!mensagemErro ||
+            !mensagemErro.classList.contains("invalid-feedback")) {
+
             mensagemErro = document.createElement("div");
             mensagemErro.className = "invalid-feedback";
+
             campo.insertAdjacentElement("afterend", mensagemErro);
         }
 
@@ -37,33 +41,43 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function mostrarSucesso(campo) {
+
         campo.classList.remove("is-invalid");
         campo.classList.add("is-valid");
 
         const mensagemErro = campo.nextElementSibling;
 
-        if (mensagemErro && mensagemErro.classList.contains("invalid-feedback")) {
+        if (mensagemErro &&
+            mensagemErro.classList.contains("invalid-feedback")) {
+
             mensagemErro.textContent = "";
         }
     }
 
     function limparValidacao(campo) {
+
         campo.classList.remove("is-invalid", "is-valid");
 
         const mensagemErro = campo.nextElementSibling;
 
-        if (mensagemErro && mensagemErro.classList.contains("invalid-feedback")) {
+        if (mensagemErro &&
+            mensagemErro.classList.contains("invalid-feedback")) {
+
             mensagemErro.textContent = "";
         }
     }
 
     function validarObrigatorio(campo, mensagem) {
+
         if (!campo.value.trim()) {
+
             mostrarErro(campo, mensagem);
+
             return false;
         }
 
         mostrarSucesso(campo);
+
         return true;
     }
 
@@ -87,12 +101,28 @@ document.addEventListener("DOMContentLoaded", function () {
         let valor = somenteNumeros(this.value).slice(0, 11);
 
         if (valor.length > 10) {
-            valor = valor.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1) $2-$3");
+
+            valor = valor.replace(
+                /^(\d{2})(\d{5})(\d{4})$/,
+                "($1) $2-$3"
+            );
+
         } else if (valor.length > 6) {
-            valor = valor.replace(/^(\d{2})(\d{4})(\d{1,4})$/, "($1) $2-$3");
+
+            valor = valor.replace(
+                /^(\d{2})(\d{4})(\d{1,4})$/,
+                "($1) $2-$3"
+            );
+
         } else if (valor.length > 2) {
-            valor = valor.replace(/^(\d{2})(\d+)/, "($1) $2");
+
+            valor = valor.replace(
+                /^(\d{2})(\d+)/,
+                "($1) $2"
+            );
+
         } else if (valor.length > 0) {
+
             valor = valor.replace(/^(\d+)/, "($1");
         }
 
@@ -105,13 +135,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const numeroCPF = somenteNumeros(valor);
 
-        if (numeroCPF.length !== 11 || /^(\d)\1{10}$/.test(numeroCPF)) {
+        if (
+            numeroCPF.length !== 11 ||
+            /^(\d)\1{10}$/.test(numeroCPF)
+        ) {
             return false;
         }
 
         let soma = 0;
 
         for (let i = 0; i < 9; i++) {
+
             soma += Number(numeroCPF[i]) * (10 - i);
         }
 
@@ -128,6 +162,7 @@ document.addEventListener("DOMContentLoaded", function () {
         soma = 0;
 
         for (let i = 0; i < 10; i++) {
+
             soma += Number(numeroCPF[i]) * (11 - i);
         }
 
@@ -143,14 +178,18 @@ document.addEventListener("DOMContentLoaded", function () {
     // VALIDAÇÃO DE E-MAIL
 
     function validarEmail(valor) {
+
         const formatoEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
         return formatoEmail.test(valor);
     }
 
     // VALIDAÇÃO DE CELULAR
 
     function validarCelular(valor) {
+
         const telefone = somenteNumeros(valor);
+
         return telefone.length === 10 || telefone.length === 11;
     }
 
@@ -160,14 +199,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let valido = true;
 
-        if (!validarObrigatorio(nomeAnimal, "Informe o nome do animal.")) {
+        if (!validarObrigatorio(
+            nomeAnimal,
+            "Informe o nome do animal."
+        )) {
             valido = false;
         }
 
-        const sexoSelecionado = document.querySelector('input[name="sexo"]:checked');
+        const sexoSelecionado = document.querySelector(
+            'input[name="sexo"]:checked'
+        );
 
         if (!sexoSelecionado) {
+
             alert("Selecione o sexo do animal.");
+
             valido = false;
         }
 
@@ -175,21 +221,40 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const idadeAnimal = Number(idade.value);
 
-            if (!Number.isInteger(idadeAnimal) || idadeAnimal < 0 || idadeAnimal > 100) {
-                mostrarErro(idade, "Informe uma idade entre 0 e 100 anos.");
+            if (
+                !Number.isInteger(idadeAnimal) ||
+                idadeAnimal < 0 ||
+                idadeAnimal > 100
+            ) {
+
+                mostrarErro(
+                    idade,
+                    "Informe uma idade entre 0 e 100 anos."
+                );
+
                 valido = false;
+
             } else {
+
                 mostrarSucesso(idade);
             }
 
         } else {
+
             limparValidacao(idade);
         }
 
         if (!especie.value) {
-            mostrarErro(especie, "Selecione a espécie do animal.");
+
+            mostrarErro(
+                especie,
+                "Selecione a espécie do animal."
+            );
+
             valido = false;
+
         } else {
+
             mostrarSucesso(especie);
         }
 
@@ -202,59 +267,131 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let valido = true;
 
-        if (!validarObrigatorio(proprietario, "Informe seu nome completo.")) {
+        if (!validarObrigatorio(
+            proprietario,
+            "Informe seu nome completo."
+        )) {
             valido = false;
         }
 
-        if (cpf.value.trim() !== "") {
+        // CPF
 
-            if (!validarCPF(cpf.value)) {
-                mostrarErro(cpf, "Informe um CPF válido.");
-                valido = false;
-            } else {
-                mostrarSucesso(cpf);
-            }
+        if (!validarObrigatorio(
+            cpf,
+            "Informe seu CPF."
+        )) {
+
+            valido = false;
+
+        } else if (!validarCPF(cpf.value)) {
+
+            mostrarErro(
+                cpf,
+                "Informe um CPF válido."
+            );
+
+            valido = false;
 
         } else {
-            limparValidacao(cpf);
+
+            mostrarSucesso(cpf);
         }
 
-        if (!validarObrigatorio(rg, "Informe o RG do proprietário.")) {
-            valido = false;
-        }
+        // CELULAR
 
-        if (!validarObrigatorio(numero, "Informe seu número de celular.")) {
+        if (!validarObrigatorio(
+            numero,
+            "Informe seu número de celular."
+        )) {
+
             valido = false;
+
         } else if (!validarCelular(numero.value)) {
-            mostrarErro(numero, "Informe um celular com DDD válido.");
+
+            mostrarErro(
+                numero,
+                "Informe um celular com DDD válido."
+            );
+
             valido = false;
+
         } else {
+
             mostrarSucesso(numero);
         }
 
-        if (!validarObrigatorio(email, "Informe seu e-mail.")) {
+        // E-MAIL
+
+        if (!validarObrigatorio(
+            email,
+            "Informe seu e-mail."
+        )) {
+
             valido = false;
+
         } else if (!validarEmail(email.value.trim())) {
-            mostrarErro(email, "Informe um endereço de e-mail válido.");
+
+            mostrarErro(
+                email,
+                "Informe um endereço de e-mail válido."
+            );
+
             valido = false;
+
         } else {
+
             mostrarSucesso(email);
         }
 
-        if (!validarObrigatorio(cidade, "Informe sua cidade.")) {
+        // SENHA
+
+        if (!validarObrigatorio(
+            senha,
+            "Crie uma senha."
+        )) {
+
+            valido = false;
+
+        } else if (senha.value.length < 6) {
+
+            mostrarErro(
+                senha,
+                "A senha deve ter pelo menos 6 caracteres."
+            );
+
+            valido = false;
+
+        } else {
+
+            mostrarSucesso(senha);
+        }
+
+        // CIDADE
+
+        if (!validarObrigatorio(
+            cidade,
+            "Informe sua cidade."
+        )) {
             valido = false;
         }
 
-        if (!validarObrigatorio(bairro, "Informe seu bairro.")) {
+        // BAIRRO
+
+        if (!validarObrigatorio(
+            bairro,
+            "Informe seu bairro."
+        )) {
             valido = false;
         }
 
         return valido;
     }
 
-    // VALIDAÇÃO AO DIGITAR
+    // LIMPAR VALIDAÇÃO AO DIGITAR
 
-    document.querySelectorAll(".form-control, .form-select").forEach(function (campo) {
+    document.querySelectorAll(
+        ".form-control, .form-select"
+    ).forEach(function (campo) {
 
         campo.addEventListener("input", function () {
             limparValidacao(this);
@@ -277,9 +414,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
             evento.preventDefault();
 
-            const primeiroErro = document.querySelector(".is-invalid");
+            const primeiroErro = document.querySelector(
+                ".is-invalid"
+            );
 
             if (primeiroErro) {
+
                 primeiroErro.scrollIntoView({
                     behavior: "smooth",
                     block: "center"
@@ -297,6 +437,7 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
         if (!confirmar) {
+
             evento.preventDefault();
         }
 

@@ -8,13 +8,18 @@
 
     <title>Consultas | Patas & Bigodes</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
-    <link rel="icon" type="image/png" th:href="@{/img/favicon.png}">
+    <link rel="icon"
+          type="image/png"
+          th:href="@{/img/favicon.png}">
 
-    <link rel="stylesheet" th:href="@{/css/consultas.css}">
+    <link rel="stylesheet"
+          th:href="@{/css/consultas.css}">
 </head>
 
 <body>
@@ -27,11 +32,14 @@
 
             <div class="container-fluid px-3 px-lg-4">
 
-                <a th:href="@{/}" class="navbar-brand">
-                    <img th:src="@{/img/logo.png}" class="logo" alt="Logo Patas & Bigodes">
+                <a th:href="@{/apresentacao}" class="navbar-brand">
+                    <img th:src="@{/img/logo.png}"
+                         class="logo"
+                         alt="Logo Patas & Bigodes">
                 </a>
 
-                <button class="navbar-toggler" type="button"
+                <button class="navbar-toggler"
+                        type="button"
                         data-bs-toggle="collapse"
                         data-bs-target="#menuPrincipal"
                         aria-controls="menuPrincipal"
@@ -46,7 +54,7 @@
 
                     <div class="menu mx-auto">
 
-                        <a th:href="@{/}" class="menu-link">
+                        <a th:href="@{/apresentacao}" class="menu-link">
                             <i class="bi bi-house-heart"></i>
                             Início
                         </a>
@@ -64,7 +72,9 @@
                     </div>
 
                     <a th:href="@{/carteirinha}" class="perfil-link">
-                        <img th:src="@{/img/cachorro.png}" class="perfil" alt="Área do cliente">
+                        <img th:src="@{/img/cachorro.png}"
+                             class="perfil"
+                             alt="Área do cliente">
                     </a>
 
                 </div>
@@ -97,7 +107,21 @@
 
             </div>
 
-            <form th:action="@{/consultas}" method="post" id="formularioConsulta">
+            <form th:action="@{/consultas}"
+                  method="post"
+                  id="formularioConsulta">
+
+                <div th:if="${erro}"
+                     class="alert alert-danger"
+                     role="alert"
+                     th:text="${erro}">
+                </div>
+
+                <div th:if="${mensagem}"
+                     class="alert alert-success"
+                     role="alert"
+                     th:text="${mensagem}">
+                </div>
 
                 <div class="row g-4">
 
@@ -117,7 +141,9 @@
 
                             </h2>
 
-                            <label class="form-label">Qual é o seu pet?</label>
+                            <label class="form-label">
+                                Qual é o seu pet?
+                            </label>
 
                             <div class="opcoes-pet">
 
@@ -130,7 +156,8 @@
                                            value="Cachorro"
                                            required>
 
-                                    <label class="form-check-label" for="cachorro">
+                                    <label class="form-check-label"
+                                           for="cachorro">
                                         🐶 Cachorro
                                     </label>
 
@@ -144,7 +171,8 @@
                                            id="gato"
                                            value="Gato">
 
-                                    <label class="form-check-label" for="gato">
+                                    <label class="form-check-label"
+                                           for="gato">
                                         🐱 Gato
                                     </label>
 
@@ -161,6 +189,7 @@
                                    name="nomePet"
                                    class="form-control"
                                    placeholder="Digite o nome do pet"
+                                   maxlength="100"
                                    required>
 
                             <label for="raca" class="form-label">
@@ -171,7 +200,8 @@
                                    id="raca"
                                    name="raca"
                                    class="form-control"
-                                   placeholder="Ex.: Golden Retriever">
+                                   placeholder="Ex.: Golden Retriever"
+                                   maxlength="100">
 
                             <label for="idade" class="form-label">
                                 Idade
@@ -183,6 +213,7 @@
                                    class="form-control"
                                    placeholder="Idade do pet"
                                    min="0"
+                                   max="100"
                                    required>
 
                         </div>
@@ -214,6 +245,7 @@
                                    name="nomeTutor"
                                    class="form-control"
                                    placeholder="Digite seu nome completo"
+                                   maxlength="150"
                                    required>
 
                             <label for="celular" class="form-label">
@@ -225,6 +257,7 @@
                                    name="celular"
                                    class="form-control"
                                    placeholder="(00) 00000-0000"
+                                   maxlength="20"
                                    required>
 
                             <label for="email" class="form-label">
@@ -236,6 +269,7 @@
                                    name="email"
                                    class="form-control"
                                    placeholder="seuemail@email.com"
+                                   maxlength="100"
                                    required>
 
                             <label for="informacoes" class="form-label">
@@ -245,6 +279,7 @@
                             <textarea id="informacoes"
                                       name="informacoes"
                                       class="form-control"
+                                      maxlength="1000"
                                       placeholder="Conte um pouco mais sobre o seu pet..."></textarea>
 
                         </div>
@@ -271,16 +306,30 @@
                                 Tipo de consulta
                             </label>
 
-                            <select id="consulta" name="consulta" class="form-select" required>
+                            <select id="consulta"
+                                    name="consulta"
+                                    class="form-select"
+                                    required>
 
                                 <option value="" selected disabled>
                                     Selecione o tipo de consulta
                                 </option>
 
-                                <option value="Clínica Geral">Clínica Geral</option>
-                                <option value="Consulta de rotina">Consulta de rotina</option>
-                                <option value="Vacinação">Vacinação</option>
-                                <option value="Retorno">Retorno</option>
+                                <option value="Clínica Geral">
+                                    Clínica Geral
+                                </option>
+
+                                <option value="Consulta de rotina">
+                                    Consulta de rotina
+                                </option>
+
+                                <option value="Vacinação">
+                                    Vacinação
+                                </option>
+
+                                <option value="Retorno">
+                                    Retorno
+                                </option>
 
                             </select>
 
@@ -297,9 +346,21 @@
                                     Selecione uma especialidade
                                 </option>
 
-                                <option value="Dermatologia">Dermatologia</option>
-                                <option value="Cardiologia">Cardiologia</option>
-                                <option value="Cirurgia">Cirurgia</option>
+                                <option value="Clínica Geral">
+                                    Clínica Geral
+                                </option>
+
+                                <option value="Dermatologia">
+                                    Dermatologia
+                                </option>
+
+                                <option value="Cardiologia">
+                                    Cardiologia
+                                </option>
+
+                                <option value="Cirurgia">
+                                    Cirurgia
+                                </option>
 
                             </select>
 
@@ -317,18 +378,25 @@
                                 Horário
                             </label>
 
-                            <select id="horario" name="horario" class="form-select" required>
+                            <select id="horario"
+                                    name="horario"
+                                    class="form-select"
+                                    required>
 
                                 <option value="" selected disabled>
                                     Selecione um horário
                                 </option>
 
-                                <option value="08:00">08:00</option>
                                 <option value="09:00">09:00</option>
                                 <option value="10:00">10:00</option>
+                                <option value="11:00">11:00</option>
+                                <option value="12:00">12:00</option>
                                 <option value="14:00">14:00</option>
                                 <option value="15:00">15:00</option>
                                 <option value="16:00">16:00</option>
+                                <option value="17:00">17:00</option>
+                                <option value="18:00">18:00</option>
+                                <option value="19:00">19:00</option>
 
                             </select>
 
@@ -365,7 +433,8 @@
 
                         <div class="modal-header">
 
-                            <h1 class="modal-title" id="modalConfirmacaoLabel">
+                            <h1 class="modal-title"
+                                id="modalConfirmacaoLabel">
 
                                 Consulta confirmada!
                                 <i class="bi bi-check-circle-fill"></i>
@@ -403,7 +472,8 @@
                                 Fechar
                             </button>
 
-                            <a th:href="@{/carteirinha}" class="btn btn-ver-fechar">
+                            <a th:href="@{/carteirinha}"
+                               class="btn btn-ver-fechar">
                                 Ver Carteira-Pet
                             </a>
 
@@ -413,6 +483,10 @@
 
                 </div>
 
+            </div>
+
+            <div th:if="${consultaConfirmada}"
+                 id="consultaConfirmada">
             </div>
 
         </div>
@@ -425,7 +499,8 @@
 
             <div class="footer-logo">
 
-                <img th:src="@{/img/logo.png}" alt="Patas & Bigodes">
+                <img th:src="@{/img/logo.png}"
+                     alt="Patas & Bigodes">
 
                 <div>
 
@@ -462,7 +537,8 @@
             </div>
 
             <p>
-                © 2026 Patas & Bigodes. Todos os direitos reservados.
+                © <span id="ano">2026</span>
+                Patas & Bigodes. Todos os direitos reservados.
             </p>
 
         </div>

@@ -22,11 +22,6 @@ public class PaginasController {
         return "login";
     }
 
-    @GetMapping("/carteirinha")
-    public String carteirinha() {
-        return "carteirinha";
-    }
-
     @GetMapping("/cadastro")
     public String cadastro() {
         return "cadastro";

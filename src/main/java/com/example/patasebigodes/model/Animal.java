@@ -2,6 +2,7 @@
 package com.example.patasebigodes.model;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
 @Entity
@@ -16,8 +17,11 @@ public class Animal {
     private String especie;
     private String raca;
     private String sexo;
+
     private LocalDate dataNascimento;
+
     private Double peso;
+
     private String foto;
 
     @ManyToOne

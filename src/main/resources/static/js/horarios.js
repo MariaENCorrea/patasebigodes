@@ -11,7 +11,7 @@ const HORARIOS_CLINICA = {
     6: { abertura: 9, fechamento: 13 }
 };
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
 
     const elementoStatus = document.querySelector(".status");
     const elementoProximo = document.querySelector(".proximo");
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setInterval(atualizarStatus, 60000);
 
-    document.addEventListener("visibilitychange", () => {
+    document.addEventListener("visibilitychange", function () {
         if (!document.hidden) {
             atualizarStatus();
             destacarDiaAtual();
@@ -46,7 +46,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const minutosAtuais = horaAtual * 60 + minutoAtual;
 
-        const estaAberta = horarioHoje !== null &&
+        const estaAberta =
+            horarioHoje !== null &&
+            horarioHoje !== undefined &&
             minutosAtuais >= horarioHoje.abertura * 60 &&
             minutosAtuais < horarioHoje.fechamento * 60;
 
@@ -86,6 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!proximoHorario) {
             elementoProximo.textContent =
                 "Não há previsão de atendimento.";
+
             return;
         }
 
@@ -117,6 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
         for (let i = 0; i <= 7; i++) {
 
             const dataVerificada = new Date(agora);
+
             dataVerificada.setDate(agora.getDate() + i);
 
             const horario = HORARIOS_CLINICA[dataVerificada.getDay()];
@@ -153,7 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const diaAtual = new Date().getDay();
 
-        cardsHorarios.forEach((card) => {
+        cardsHorarios.forEach(function (card) {
 
             card.classList.remove("hoje");
 
@@ -190,24 +194,27 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        const observador = new IntersectionObserver((entradas, observer) => {
+        const observador = new IntersectionObserver(
+            function (entradas, observer) {
 
-            entradas.forEach((entrada) => {
+                entradas.forEach(function (entrada) {
 
-                if (entrada.isIntersecting) {
-                    entrada.target.classList.add("visivel");
-                    observer.unobserve(entrada.target);
-                }
-            });
+                    if (entrada.isIntersecting) {
+                        entrada.target.classList.add("visivel");
+                        observer.unobserve(entrada.target);
+                    }
+                });
 
-        }, {
-            threshold: 0.15
-        });
+            },
+            {
+                threshold: 0.15
+            }
+        );
 
-        elementos.forEach((elemento) => {
+        elementos.forEach(function (elemento) {
+
             elemento.classList.add("animar");
             observador.observe(elemento);
         });
     }
-
 });
