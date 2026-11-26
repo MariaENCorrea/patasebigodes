@@ -39,8 +39,9 @@ public class CarteirinhaController {
     }
 
     @GetMapping("/carteirinha")
-    public String carteirinha(HttpSession session,
-                              RedirectAttributes redirectAttributes) {
+    public String carteirinha(
+            HttpSession session,
+            RedirectAttributes redirectAttributes) {
 
         Long tutorId = obterTutorId(session);
 
@@ -244,7 +245,9 @@ public class CarteirinhaController {
         return "redirect:/carteirinha/" + id;
     }
 
-    private void carregarCarteirinha(Animal animal, Model model) {
+    private void carregarCarteirinha(
+            Animal animal,
+            Model model) {
 
         List<?> atualizacoes =
                 atualizacaoRepository

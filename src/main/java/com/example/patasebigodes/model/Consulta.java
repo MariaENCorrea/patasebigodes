@@ -13,19 +13,9 @@ public class Consulta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String animal;
-
-    private String nomePet;
-
-    private String raca;
-
-    private Integer idade;
-
-    private String nomeTutor;
-
-    private String celular;
-
-    private String email;
+    @ManyToOne
+    @JoinColumn(name = "animal_id", nullable = false)
+    private Animal animal;
 
     @Column(length = 1000)
     private String informacoes;
@@ -46,60 +36,12 @@ public class Consulta {
         return id;
     }
 
-    public String getAnimal() {
+    public Animal getAnimal() {
         return animal;
     }
 
-    public void setAnimal(String animal) {
+    public void setAnimal(Animal animal) {
         this.animal = animal;
-    }
-
-    public String getNomePet() {
-        return nomePet;
-    }
-
-    public void setNomePet(String nomePet) {
-        this.nomePet = nomePet;
-    }
-
-    public String getRaca() {
-        return raca;
-    }
-
-    public void setRaca(String raca) {
-        this.raca = raca;
-    }
-
-    public Integer getIdade() {
-        return idade;
-    }
-
-    public void setIdade(Integer idade) {
-        this.idade = idade;
-    }
-
-    public String getNomeTutor() {
-        return nomeTutor;
-    }
-
-    public void setNomeTutor(String nomeTutor) {
-        this.nomeTutor = nomeTutor;
-    }
-
-    public String getCelular() {
-        return celular;
-    }
-
-    public void setCelular(String celular) {
-        this.celular = celular;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getInformacoes() {

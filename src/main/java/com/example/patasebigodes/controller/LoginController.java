@@ -1,8 +1,11 @@
+
 package com.example.patasebigodes.controller;
 
 import com.example.patasebigodes.model.Tutor;
 import com.example.patasebigodes.repository.TutorRepository;
+
 import jakarta.servlet.http.HttpSession;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -51,7 +54,9 @@ public class LoginController {
 
         Tutor tutor = resultado.get();
 
-        if (!passwordEncoder.matches(senha, tutor.getSenha())) {
+        if (tutor.getSenha() == null ||
+                !passwordEncoder.matches(senha, tutor.getSenha())) {
+
             redirectAttributes.addFlashAttribute(
                     "erro",
                     "E-mail ou senha incorretos."
@@ -63,7 +68,7 @@ public class LoginController {
         session.setAttribute("tutorId", tutor.getId());
         session.setAttribute("tutorNome", tutor.getNome());
 
-        return "redirect:/";
+        return "redirect:/horarios";
     }
 
     @GetMapping("/logout")

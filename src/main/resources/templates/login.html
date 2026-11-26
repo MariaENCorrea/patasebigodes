@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 
@@ -42,7 +43,6 @@
 </header>
 
 <main>
-
     <section class="inicio">
 
         <div class="card-clinica">
@@ -64,13 +64,13 @@
                   th:action="@{/login}"
                   method="post">
 
-                <div th:if="${mensagem}"
+                <div th:if="${mensagem != null}"
                      class="alert alert-success"
                      role="alert"
                      th:text="${mensagem}">
                 </div>
 
-                <div th:if="${erro}"
+                <div th:if="${erro != null}"
                      class="alert alert-danger"
                      role="alert"
                      th:text="${erro}">
@@ -127,11 +127,9 @@
         </div>
 
     </section>
-
 </main>
 
 <footer>
-
     <div class="footer-content">
 
         <div class="footer-logo">
@@ -172,7 +170,6 @@
         </p>
 
     </div>
-
 </footer>
 
 <script th:src="@{/js/login.js}"></script>

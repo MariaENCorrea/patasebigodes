@@ -17,6 +17,7 @@ public class Animal {
     private String especie;
     private String raca;
     private String sexo;
+    private String cor;
 
     private LocalDate dataNascimento;
 
@@ -94,5 +95,13 @@ public class Animal {
 
     public void setTutor(Tutor tutor) {
         this.tutor = tutor;
+    }
+
+    public String getCor() {
+        return cor;
+    }
+
+    public void setCor(String cor) {
+        this.cor = cor;
     }
 }
