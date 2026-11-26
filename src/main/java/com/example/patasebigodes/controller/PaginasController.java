@@ -12,11 +12,6 @@ public class PaginasController {
         return "horarios";
     }
 
-    @GetMapping("/cadastro")
-    public String cadastro() {
-        return "cadastro";
-    }
-
     @GetMapping("/apresentacao")
     public String apresentacao() {
         return "apresentacao";

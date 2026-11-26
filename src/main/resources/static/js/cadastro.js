@@ -3,17 +3,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const formulario = document.getElementById("formularioCadastro");
 
-    const nomeAnimal = document.getElementById("nomeAnimal");
-    const idade = document.getElementById("idade");
-    const especie = document.getElementById("especie");
+    if (!formulario) {
+        return;
+    }
 
-    const proprietario = document.getElementById("proprietario");
+    const nome = document.getElementById("nome");
     const cpf = document.getElementById("cpf");
-    const numero = document.getElementById("numero");
+    const telefone = document.getElementById("telefone");
     const email = document.getElementById("email");
     const senha = document.getElementById("senha");
-    const cidade = document.getElementById("cidade");
-    const bairro = document.getElementById("bairro");
 
     formulario.noValidate = true;
 
@@ -22,7 +20,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function mostrarErro(campo, mensagem) {
-
         campo.classList.add("is-invalid");
         campo.classList.remove("is-valid");
 
@@ -41,7 +38,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function mostrarSucesso(campo) {
-
         campo.classList.remove("is-invalid");
         campo.classList.add("is-valid");
 
@@ -55,7 +51,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function limparValidacao(campo) {
-
         campo.classList.remove("is-invalid", "is-valid");
 
         const mensagemErro = campo.nextElementSibling;
@@ -68,23 +63,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function validarObrigatorio(campo, mensagem) {
-
         if (!campo.value.trim()) {
-
             mostrarErro(campo, mensagem);
-
             return false;
         }
 
         mostrarSucesso(campo);
-
         return true;
     }
 
-    // MÁSCARA DE CPF
-
     cpf.addEventListener("input", function () {
-
         let valor = somenteNumeros(this.value).slice(0, 11);
 
         valor = valor.replace(/(\d{3})(\d)/, "$1.$2");
@@ -94,45 +82,32 @@ document.addEventListener("DOMContentLoaded", function () {
         this.value = valor;
     });
 
-    // MÁSCARA DE CELULAR
-
-    numero.addEventListener("input", function () {
-
+    telefone.addEventListener("input", function () {
         let valor = somenteNumeros(this.value).slice(0, 11);
 
         if (valor.length > 10) {
-
             valor = valor.replace(
                 /^(\d{2})(\d{5})(\d{4})$/,
                 "($1) $2-$3"
             );
-
         } else if (valor.length > 6) {
-
             valor = valor.replace(
                 /^(\d{2})(\d{4})(\d{1,4})$/,
                 "($1) $2-$3"
             );
-
         } else if (valor.length > 2) {
-
             valor = valor.replace(
                 /^(\d{2})(\d+)/,
                 "($1) $2"
             );
-
         } else if (valor.length > 0) {
-
             valor = valor.replace(/^(\d+)/, "($1");
         }
 
         this.value = valor;
     });
 
-    // VALIDAÇÃO DE CPF
-
     function validarCPF(valor) {
-
         const numeroCPF = somenteNumeros(valor);
 
         if (
@@ -145,7 +120,6 @@ document.addEventListener("DOMContentLoaded", function () {
         let soma = 0;
 
         for (let i = 0; i < 9; i++) {
-
             soma += Number(numeroCPF[i]) * (10 - i);
         }
 
@@ -162,7 +136,6 @@ document.addEventListener("DOMContentLoaded", function () {
         soma = 0;
 
         for (let i = 0; i < 10; i++) {
-
             soma += Number(numeroCPF[i]) * (11 - i);
         }
 
@@ -175,221 +148,86 @@ document.addEventListener("DOMContentLoaded", function () {
         return digito2 === Number(numeroCPF[10]);
     }
 
-    // VALIDAÇÃO DE E-MAIL
-
     function validarEmail(valor) {
-
         const formatoEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
         return formatoEmail.test(valor);
     }
 
-    // VALIDAÇÃO DE CELULAR
+    function validarTelefone(valor) {
+        const telefoneNumerico = somenteNumeros(valor);
 
-    function validarCelular(valor) {
-
-        const telefone = somenteNumeros(valor);
-
-        return telefone.length === 10 || telefone.length === 11;
+        return telefoneNumerico.length === 10 ||
+            telefoneNumerico.length === 11;
     }
 
-    // VALIDAÇÃO DOS DADOS DO ANIMAL
-
-    function validarAnimal() {
-
+    function validarFormulario() {
         let valido = true;
 
-        if (!validarObrigatorio(
-            nomeAnimal,
-            "Informe o nome do animal."
-        )) {
+        if (!validarObrigatorio(nome, "Informe seu nome completo.")) {
             valido = false;
         }
 
-        const sexoSelecionado = document.querySelector(
-            'input[name="sexo"]:checked'
-        );
-
-        if (!sexoSelecionado) {
-
-            alert("Selecione o sexo do animal.");
-
+        if (!validarObrigatorio(cpf, "Informe seu CPF.")) {
             valido = false;
-        }
-
-        if (idade.value.trim() !== "") {
-
-            const idadeAnimal = Number(idade.value);
-
-            if (
-                !Number.isInteger(idadeAnimal) ||
-                idadeAnimal < 0 ||
-                idadeAnimal > 100
-            ) {
-
-                mostrarErro(
-                    idade,
-                    "Informe uma idade entre 0 e 100 anos."
-                );
-
-                valido = false;
-
-            } else {
-
-                mostrarSucesso(idade);
-            }
-
-        } else {
-
-            limparValidacao(idade);
-        }
-
-        if (!especie.value) {
-
-            mostrarErro(
-                especie,
-                "Selecione a espécie do animal."
-            );
-
-            valido = false;
-
-        } else {
-
-            mostrarSucesso(especie);
-        }
-
-        return valido;
-    }
-
-    // VALIDAÇÃO DOS DADOS DO PROPRIETÁRIO
-
-    function validarProprietario() {
-
-        let valido = true;
-
-        if (!validarObrigatorio(
-            proprietario,
-            "Informe seu nome completo."
-        )) {
-            valido = false;
-        }
-
-        // CPF
-
-        if (!validarObrigatorio(
-            cpf,
-            "Informe seu CPF."
-        )) {
-
-            valido = false;
-
         } else if (!validarCPF(cpf.value)) {
-
-            mostrarErro(
-                cpf,
-                "Informe um CPF válido."
-            );
-
+            mostrarErro(cpf, "Informe um CPF válido.");
             valido = false;
-
         } else {
-
             mostrarSucesso(cpf);
         }
 
-        // CELULAR
-
-        if (!validarObrigatorio(
-            numero,
-            "Informe seu número de celular."
-        )) {
-
+        if (!validarObrigatorio(telefone, "Informe seu telefone.")) {
             valido = false;
-
-        } else if (!validarCelular(numero.value)) {
-
-            mostrarErro(
-                numero,
-                "Informe um celular com DDD válido."
-            );
-
+        } else if (!validarTelefone(telefone.value)) {
+            mostrarErro(telefone, "Informe um telefone válido com DDD.");
             valido = false;
-
         } else {
-
-            mostrarSucesso(numero);
+            mostrarSucesso(telefone);
         }
 
-        // E-MAIL
-
-        if (!validarObrigatorio(
-            email,
-            "Informe seu e-mail."
-        )) {
-
+        if (!validarObrigatorio(email, "Informe seu e-mail.")) {
             valido = false;
-
         } else if (!validarEmail(email.value.trim())) {
-
-            mostrarErro(
-                email,
-                "Informe um endereço de e-mail válido."
-            );
-
+            mostrarErro(email, "Informe um e-mail válido.");
             valido = false;
-
         } else {
-
             mostrarSucesso(email);
         }
 
-        // SENHA
-
-        if (!validarObrigatorio(
-            senha,
-            "Crie uma senha."
-        )) {
-
+        if (!validarObrigatorio(senha, "Crie uma senha.")) {
             valido = false;
-
         } else if (senha.value.length < 6) {
-
-            mostrarErro(
-                senha,
-                "A senha deve ter pelo menos 6 caracteres."
-            );
-
+            mostrarErro(senha, "A senha deve ter pelo menos 6 caracteres.");
             valido = false;
-
         } else {
-
             mostrarSucesso(senha);
         }
 
-        // CIDADE
+        const camposObrigatorios = formulario.querySelectorAll(
+            "input[required]"
+        );
 
-        if (!validarObrigatorio(
-            cidade,
-            "Informe sua cidade."
-        )) {
-            valido = false;
-        }
-
-        // BAIRRO
-
-        if (!validarObrigatorio(
-            bairro,
-            "Informe seu bairro."
-        )) {
-            valido = false;
-        }
+        camposObrigatorios.forEach(function (campo) {
+            if (
+                campo !== nome &&
+                campo !== cpf &&
+                campo !== telefone &&
+                campo !== email &&
+                campo !== senha
+            ) {
+                if (!validarObrigatorio(
+                    campo,
+                    "Preencha este campo."
+                )) {
+                    valido = false;
+                }
+            }
+        });
 
         return valido;
     }
 
-    // LIMPAR VALIDAÇÃO AO DIGITAR
-
-    document.querySelectorAll(
+    formulario.querySelectorAll(
         ".form-control, .form-select"
     ).forEach(function (campo) {
 
@@ -400,26 +238,16 @@ document.addEventListener("DOMContentLoaded", function () {
         campo.addEventListener("change", function () {
             limparValidacao(this);
         });
-
     });
-
-    // FINALIZAR CADASTRO
 
     formulario.addEventListener("submit", function (evento) {
 
-        const animalValido = validarAnimal();
-        const proprietarioValido = validarProprietario();
-
-        if (!animalValido || !proprietarioValido) {
-
+        if (!validarFormulario()) {
             evento.preventDefault();
 
-            const primeiroErro = document.querySelector(
-                ".is-invalid"
-            );
+            const primeiroErro = document.querySelector(".is-invalid");
 
             if (primeiroErro) {
-
                 primeiroErro.scrollIntoView({
                     behavior: "smooth",
                     block: "center"
@@ -431,16 +259,9 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        const confirmar = confirm(
-            "Todos os dados foram preenchidos corretamente.\n\n" +
-            "Deseja finalizar o cadastro?"
-        );
-
-        if (!confirmar) {
-
+        if (!confirm("Deseja finalizar o cadastro do tutor?")) {
             evento.preventDefault();
         }
-
     });
 
 });
