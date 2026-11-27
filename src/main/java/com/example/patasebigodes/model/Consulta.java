@@ -17,12 +17,18 @@ public class Consulta {
     @JoinColumn(name = "animal_id", nullable = false)
     private Animal animal;
 
+    @ManyToOne
+    @JoinColumn(name = "funcionario_id")
+    private Funcionario funcionario;
+
+    @ManyToOne
+    @JoinColumn(name = "especialidade_id")
+    private Especialidade especialidade;
+
     @Column(length = 1000)
     private String informacoes;
 
     private String consulta;
-
-    private String especialidade;
 
     @Column(name = "data_consulta")
     private LocalDate data;
@@ -44,6 +50,22 @@ public class Consulta {
         this.animal = animal;
     }
 
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
+    }
+
+    public Especialidade getEspecialidade() {
+        return especialidade;
+    }
+
+    public void setEspecialidade(Especialidade especialidade) {
+        this.especialidade = especialidade;
+    }
+
     public String getInformacoes() {
         return informacoes;
     }
@@ -58,14 +80,6 @@ public class Consulta {
 
     public void setConsulta(String consulta) {
         this.consulta = consulta;
-    }
-
-    public String getEspecialidade() {
-        return especialidade;
-    }
-
-    public void setEspecialidade(String especialidade) {
-        this.especialidade = especialidade;
     }
 
     public LocalDate getData() {

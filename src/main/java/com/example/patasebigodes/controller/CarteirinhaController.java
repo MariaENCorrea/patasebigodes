@@ -2,6 +2,7 @@
 package com.example.patasebigodes.controller;
 
 import com.example.patasebigodes.model.Animal;
+import com.example.patasebigodes.model.Consulta;
 import com.example.patasebigodes.model.Tutor;
 import com.example.patasebigodes.repository.AnimalRepository;
 import com.example.patasebigodes.repository.TutorRepository;
@@ -75,8 +76,12 @@ public class CarteirinhaController {
             model.addAttribute("animal", new Animal());
             model.addAttribute("atualizacoes", List.of());
             model.addAttribute("vacinas", List.of());
+            model.addAttribute("consultas", List.of());
+
             model.addAttribute("totalAtualizacoes", 0);
             model.addAttribute("totalVacinas", 0);
+            model.addAttribute("totalConsultas", 0);
+
             model.addAttribute("semPet", true);
 
             if (!model.containsAttribute("avisoPet")) {
@@ -410,15 +415,15 @@ public class CarteirinhaController {
 
         List<?> atualizacoes =
                 atualizacaoMedicaRepository
-                        .findByAnimal_IdOrderByDataAtendimentoDesc(
-                                animal.getId()
-                        );
+                        .findByAnimal_IdOrderByDataAtendimentoDesc(animal.getId());
 
         List<?> vacinas =
                 vacinaRepository
-                        .findByAnimal_IdOrderByDataAplicacaoDesc(
-                                animal.getId()
-                        );
+                        .findByAnimal_IdOrderByDataAplicacaoDesc(animal.getId());
+
+        List<Consulta> consultas =
+                consultaRepository
+                        .findByAnimal_IdOrderByDataAscHorarioAsc(animal.getId());
 
         model.addAttribute("animal", animal);
         model.addAttribute("animais", animais);
@@ -426,9 +431,11 @@ public class CarteirinhaController {
 
         model.addAttribute("atualizacoes", atualizacoes);
         model.addAttribute("vacinas", vacinas);
+        model.addAttribute("consultas", consultas);
 
         model.addAttribute("totalAtualizacoes", atualizacoes.size());
         model.addAttribute("totalVacinas", vacinas.size());
+        model.addAttribute("totalConsultas", consultas.size());
 
         model.addAttribute("semPet", false);
     }

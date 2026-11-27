@@ -1,10 +1,278 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Consultas | Patas & Bigodes</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+          rel="stylesheet">
+
+    <style>
+        body {
+            background: #F1F7F3;
+            color: #26332F;
+            font-family: Arial, sans-serif;
+        }
+
+        .topo {
+            background: #034C3C;
+            color: white;
+            padding: 25px 0;
+        }
+
+        .conteudo {
+            padding: 45px 0;
+        }
+
+        .card-consultas {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.06);
+        }
+
+        .titulo {
+            color: #034C3C;
+            font-weight: bold;
+        }
+
+        .btn-verde {
+            background: #034C3C;
+            color: white;
+            border: none;
+        }
+
+        .btn-verde:hover {
+            background: #02382D;
+            color: white;
+        }
+
+        .table th {
+            color: #034C3C;
+            white-space: nowrap;
+        }
+
+        .vazio {
+            padding: 45px 15px;
+            text-align: center;
+            color: #718078;
+        }
+
+        .vazio i {
+            font-size: 45px;
+            color: #4D8B7D;
+        }
+
+        .informacoes {
+            min-width: 180px;
+            max-width: 260px;
+            white-space: normal;
+        }
+
+        .badge-especialidade {
+            background: #D7E9DE;
+            color: #034C3C;
+            font-weight: 600;
+        }
+    </style>
 </head>
+
 <body>
+
+<header class="topo">
+
+    <div class="container d-flex justify-content-between align-items-center flex-wrap gap-3">
+
+        <div>
+            <h2 class="mb-1">Patas & Bigodes</h2>
+            <span>Consultas veterinárias</span>
+        </div>
+
+        <a th:href="@{/apresentacao}" class="btn btn-light">
+            <i class="bi bi-house me-1"></i>
+            Início
+        </a>
+
+    </div>
+
+</header>
+
+<main class="container conteudo">
+
+    <div th:if="${sucesso != null}"
+         class="alert alert-success alert-dismissible fade show"
+         role="alert">
+
+        <i class="bi bi-check-circle-fill me-2"></i>
+        <span th:text="${sucesso}"></span>
+
+        <button type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Fechar">
+        </button>
+
+    </div>
+
+    <div th:if="${erro != null}"
+         class="alert alert-danger alert-dismissible fade show"
+         role="alert">
+
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+        <span th:text="${erro}"></span>
+
+        <button type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Fechar">
+        </button>
+
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+
+        <div>
+            <h2 class="titulo mb-1">Consultas agendadas</h2>
+
+            <p class="text-secondary mb-0">
+                Consulte os agendamentos dos seus animais.
+            </p>
+        </div>
+
+        <a th:href="@{/consultas/agendar}" class="btn btn-verde">
+            <i class="bi bi-plus-circle me-1"></i>
+            Agendar consulta
+        </a>
+
+    </div>
+
+    <section class="card-consultas">
+
+        <div th:if="${consultas == null or #lists.isEmpty(consultas)}"
+             class="vazio">
+
+            <i class="bi bi-calendar-x"></i>
+
+            <h5 class="mt-3">Nenhuma consulta cadastrada</h5>
+
+            <p>Você ainda não possui consultas agendadas.</p>
+
+            <a th:href="@{/consultas/agendar}" class="btn btn-verde mt-2">
+                <i class="bi bi-plus-circle me-1"></i>
+                Agendar primeira consulta
+            </a>
+
+        </div>
+
+        <div th:if="${consultas != null and !#lists.isEmpty(consultas)}"
+             class="table-responsive">
+
+            <table class="table table-hover align-middle">
+
+                <thead>
+                <tr>
+                    <th>Pet</th>
+                    <th>Tutor</th>
+                    <th>Especialidade</th>
+                    <th>Data</th>
+                    <th>Horário</th>
+                    <th>Tipo de consulta</th>
+                    <th>Informações</th>
+                    <th class="text-center">Ações</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                <tr th:each="consulta : ${consultas}">
+
+                    <td>
+                        <strong th:text="${consulta.animal != null ? consulta.animal.nome : 'Não informado'}">
+                            Pet
+                        </strong>
+                    </td>
+
+                    <td th:text="${consulta.animal != null and consulta.animal.tutor != null ? consulta.animal.tutor.nome : 'Não informado'}">
+                        Tutor
+                    </td>
+
+                    <td>
+                        <span class="badge badge-especialidade"
+                              th:text="${consulta.especialidade != null ? consulta.especialidade : 'Não informada'}">
+                            Especialidade
+                        </span>
+                    </td>
+
+                    <td th:text="${consulta.data != null ? #temporals.format(consulta.data, 'dd/MM/yyyy') : 'Não informada'}">
+                        Data
+                    </td>
+
+                    <td th:text="${consulta.horario != null ? #temporals.format(consulta.horario, 'HH:mm') : 'Não informado'}">
+                        Horário
+                    </td>
+
+                    <td th:text="${consulta.consulta != null ? consulta.consulta : 'Não informado'}">
+                        Tipo
+                    </td>
+
+                    <td class="informacoes"
+                        th:text="${consulta.informacoes != null and !#strings.isEmpty(consulta.informacoes) ? consulta.informacoes : 'Nenhuma informação adicional'}">
+                        Informações adicionais
+                    </td>
+
+                    <td class="text-center">
+
+                        <form th:action="@{/consultas/excluir/{id}(id=${consulta.id})}"
+                              method="post"
+                              onsubmit="return confirm('Deseja realmente excluir esta consulta?');">
+
+                            <input type="hidden"
+                                   th:if="${_csrf != null}"
+                                   th:name="${_csrf.parameterName}"
+                                   th:value="${_csrf.token}">
+
+                            <button type="submit"
+                                    class="btn btn-sm btn-outline-danger"
+                                    title="Excluir consulta"
+                                    aria-label="Excluir consulta">
+
+                                <i class="bi bi-trash"></i>
+
+                            </button>
+
+                        </form>
+
+                    </td>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+    <div class="text-center mt-4">
+
+        <a th:href="@{/carteirinha}" class="btn btn-outline-success">
+            <i class="bi bi-arrow-left me-1"></i>
+            Voltar para carteirinha
+        </a>
+
+    </div>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
