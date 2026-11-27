@@ -9,4 +9,6 @@ import java.util.List;
 public interface VacinaRepository extends JpaRepository<Vacina, Long> {
 
     List<Vacina> findByAnimal_IdOrderByDataAplicacaoDesc(Long animalId);
+
+    boolean existsByAnimal_Id(Long animalId);
 }

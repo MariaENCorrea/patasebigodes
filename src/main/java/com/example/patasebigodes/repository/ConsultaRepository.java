@@ -10,4 +10,7 @@ import java.time.LocalTime;
 public interface ConsultaRepository extends JpaRepository<Consulta, Long> {
 
     boolean existsByDataAndHorario(LocalDate data, LocalTime horario);
+
+    boolean existsByAnimal_Id(Long animalId);
+
 }

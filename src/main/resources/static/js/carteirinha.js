@@ -3,10 +3,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const formCadastro = document.getElementById("formCadastro");
 
-    const nomePet = document.getElementById("nomePet");
-    const tutorPet = document.getElementById("tutor");
-    const racaPet = document.getElementById("raca");
-
     const inputCpf = document.getElementById("inputCpf");
     const inputCelular = document.getElementById("inputCelular");
 
@@ -19,8 +15,15 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!alerta) {
             alerta = document.createElement("div");
             alerta.id = "mensagemCarteirinha";
-            document.querySelector("main").prepend(alerta);
+
+            const main = document.querySelector("main");
+
+            if (main) {
+                main.prepend(alerta);
+            }
         }
+
+        if (!alerta) return;
 
         alerta.className = `alert alert-${tipo}`;
         alerta.textContent = mensagem;
@@ -51,12 +54,12 @@ document.addEventListener("DOMContentLoaded", function () {
         inputCelular.addEventListener("input", function () {
             let valor = this.value.replace(/\D/g, "").substring(0, 11);
 
-            if (valor.length <= 10) {
-                valor = valor.replace(/^(\d{2})(\d)/, "($1) $2");
-                valor = valor.replace(/(\d{4})(\d)/, "$1-$2");
-            } else {
+            if (valor.length > 10) {
                 valor = valor.replace(/^(\d{2})(\d)/, "($1) $2");
                 valor = valor.replace(/(\d{5})(\d)/, "$1-$2");
+            } else {
+                valor = valor.replace(/^(\d{2})(\d)/, "($1) $2");
+                valor = valor.replace(/(\d{4})(\d)/, "$1-$2");
             }
 
             this.value = valor;
@@ -125,7 +128,9 @@ document.addEventListener("DOMContentLoaded", function () {
             const termo = this.value.toLocaleLowerCase("pt-BR").trim();
 
             document.querySelectorAll(".atualizacao-item").forEach(function (item) {
-                item.hidden = !item.textContent.toLocaleLowerCase("pt-BR").includes(termo);
+                item.hidden = !item.textContent
+                    .toLocaleLowerCase("pt-BR")
+                    .includes(termo);
             });
         });
     }
@@ -137,7 +142,9 @@ document.addEventListener("DOMContentLoaded", function () {
             const termo = this.value.toLocaleLowerCase("pt-BR").trim();
 
             document.querySelectorAll(".vacina-item").forEach(function (item) {
-                item.hidden = !item.textContent.toLocaleLowerCase("pt-BR").includes(termo);
+                item.hidden = !item.textContent
+                    .toLocaleLowerCase("pt-BR")
+                    .includes(termo);
             });
         });
     }

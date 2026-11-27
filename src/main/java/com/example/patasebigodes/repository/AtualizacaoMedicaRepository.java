@@ -12,4 +12,5 @@ public interface AtualizacaoMedicaRepository
     List<AtualizacaoMedica> findByAnimal_IdOrderByDataAtendimentoDesc(
             Long animalId
     );
+    boolean existsByAnimal_Id(Long animalId);
 }
