@@ -4,11 +4,9 @@ package com.example.patasebigodes.service;
 import com.example.patasebigodes.model.Consulta;
 import com.example.patasebigodes.model.DisponibilidadeFuncionario;
 import com.example.patasebigodes.model.Funcionario;
-
 import com.example.patasebigodes.repository.ConsultaRepository;
 import com.example.patasebigodes.repository.DisponibilidadeFuncionarioRepository;
 import com.example.patasebigodes.repository.FuncionarioRepository;
-
 import org.springframework.stereotype.Service;
 
 import java.time.DayOfWeek;
@@ -55,16 +53,18 @@ public class FuncionarioDisponibilidadeService {
             return Optional.empty();
         }
 
-        if (data.equals(LocalDate.now()) && !horario.isAfter(LocalTime.now())) {
+        if (data.equals(LocalDate.now())
+                && !horario.isAfter(LocalTime.now())) {
             return Optional.empty();
         }
 
         DayOfWeek diaSemana = data.getDayOfWeek();
 
         List<Funcionario> funcionarios =
-                funcionarioRepository.findByEspecialidades_IdAndAtivoTrue(
-                        especialidadeId
-                );
+                funcionarioRepository
+                        .findDistinctByEspecialidades_IdAndAtivoTrue(
+                                especialidadeId
+                        );
 
         for (Funcionario funcionario : funcionarios) {
 
@@ -102,6 +102,7 @@ public class FuncionarioDisponibilidadeService {
                     .anyMatch(consulta -> {
 
                         LocalTime inicioExistente = consulta.getHorario();
+
                         LocalTime fimExistente =
                                 inicioExistente.plusMinutes(TEMPO_RESERVADO);
 
@@ -134,9 +135,10 @@ public class FuncionarioDisponibilidadeService {
         DayOfWeek diaSemana = data.getDayOfWeek();
 
         List<Funcionario> funcionarios =
-                funcionarioRepository.findByEspecialidades_IdAndAtivoTrue(
-                        especialidadeId
-                );
+                funcionarioRepository
+                        .findDistinctByEspecialidades_IdAndAtivoTrue(
+                                especialidadeId
+                        );
 
         for (Funcionario funcionario : funcionarios) {
 

@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Administrativo | Patas & Bigodes</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css"
+          rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-dark bg-success">
+    <div class="container-fluid">
+        <span class="navbar-brand">
+            <i class="bi bi-shield-lock"></i>
+            Patas & Bigodes | Administrativo
+        </span>
+
+        <div class="d-flex align-items-center gap-3">
+            <span class="text-white">
+                Olá, <strong th:text="${administradorNome}">Administrador</strong>
+            </span>
+
+            <a th:href="@{/admin/logout}" class="btn btn-outline-light btn-sm">
+                <i class="bi bi-box-arrow-right"></i>
+                Sair
+            </a>
+        </div>
+    </div>
+</nav>
+
+<main class="container py-5">
+
+    <h1 class="mb-2">Dashboard</h1>
+    <p class="text-muted mb-4">
+        Gerencie as atividades da clínica veterinária.
+    </p>
+
+    <div class="row g-4">
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <i class="bi bi-calendar-check fs-1 text-success"></i>
+                    <h5 class="card-title mt-3">Consultas</h5>
+                    <p class="card-text text-muted">
+                        Visualize e gerencie os agendamentos.
+                    </p>
+                    <a th:href="@{/consultas}" class="btn btn-success">
+                        Acessar consultas
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <i class="bi bi-person-badge fs-1 text-success"></i>
+                    <h5 class="card-title mt-3">Funcionários</h5>
+                    <p class="card-text text-muted">
+                        Cadastre e gerencie os funcionários da clínica.
+                    </p>
+                    <a th:href="@{/admin/funcionarios}" class="btn btn-success">
+                        Gerenciar funcionários
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <i class="bi bi-person-heart fs-1 text-success"></i>
+                    <h5 class="card-title mt-3">Tutores</h5>
+                    <p class="card-text text-muted">
+                        Consulte os tutores cadastrados.
+                    </p>
+                    <a th:href="@{/tutores}" class="btn btn-success">
+                        Acessar tutores
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</main>
+
+</body>
+</html>
